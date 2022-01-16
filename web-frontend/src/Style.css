@@ -1,0 +1,277 @@
+/* //////Car form////////////// */
+
+
+.container-form{
+    max-width: 1300px;
+    width: 100%;
+    /* background: white; */
+    margin: 20px auto;
+    padding: 30px;
+  }
+  h2{
+    text-align: center;
+  }
+  .container-form .header_title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #2b2b2b;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .container-form .form{
+    width: 100%;
+    margin: 30px auto;
+    padding: 30px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, .325);
+    border: 1px solid #999999;
+    border-radius: 7px;
+
+  }
+  .container-form .form .section{
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #999999;
+    /* background-color: red; */
+  
+  }
+  .container-form .form #last_section{
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: none;
+  }
+  .container-form .form .section .input_field{
+    margin-top: 5px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+  }
+  .container-form .form .section .input_field label{
+    width: 100px;
+    color: black;
+    margin-right: 10px;
+    font-size: 15px;
+  }
+  .container-form .form .section .input_field .form-input,
+  .container-form .form .section .input_field .textarea{
+    width: 100%;
+    outline: none;
+    /* border: 1px solid #999999; */
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+  .container-form .form .section .input_field .textarea{
+    resize: none;
+    height: 125px;
+  }
+  .container-form .form .section .input_field .custom_select{
+    position: relative;
+    width: 90%;
+    height: 44px;
+    color: grey;
+  }
+  .container-form .form .section .input_field .custom_select select{
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid #999999;
+    width: 100%;
+    height: 100%;
+    padding: 8px 10px;
+    border-radius: 5px;
+    outline: none;
+  }
+  .container-form .form .section .input_field .custom_select:before{
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    border: 8px solid;
+    border-color: #635d5d transparent transparent transparent;
+    pointer-events: none;
+  }
+  .container-form .form .section .input_field .form-input:focus,
+  .container-form .form .section .input_field .textarea:focus,
+  .container-form .form .section .input_field select:focus{
+    border: 2px solid #2b2b2b;
+  }
+  .container-form .form .section .input_field .img_container-form{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .container-form .form .section .input_field .img_box{
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
+    min-height: 100px;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 5px 5px;
+    padding: 5px;
+    border: 2px solid #999999;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .container-form .form .section .input_field .img_box img{
+    width: 30px;
+    max-height: 100%;
+    height: 30px;
+  }
+  .container-form .form .section .input_field .profile{
+    width: 70px;
+    height: 70px;
+    margin-right: 20px;
+    border: 1px solid black;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+  .container-form .form .section .input_field .profile img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  .container-form .form .section .input_field #sellerinfo{
+    width: 100%;
+  }
+  .container-form .form .section .subheading{
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #2b2b2b;
+    text-align: left;
+  }
+  .container-form .form .section .input_field .btn-submit{
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 18px;
+    border: 0;
+    background: #2b2b2b;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    outline: none;
+    transition: all 0.5s;
+  }
+  .container-form .form .section .input_field .btn-submit:hover{
+    background: #424242;
+    transform: scale(1.01);
+    font-size: 20px;
+  }
+  .container-form .form .section .input_field:last-child{
+    margin-bottom: 0;
+  }
+  .container-form .form .section .input_field .btn-submit:hover{
+    background: #505050;
+  }
+  
+  
+  input[type="radio"]{
+    display: none;
+  }
+  #radios{
+    color: #2b2b2b;
+    font-size: 16px;
+    width: 100px;
+    height: 35px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px 5px 10px 10px;
+    margin: 5px 8px;
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  #radios:before{
+    content: " ";
+    height: 12px;
+    width: 12px;
+    border: 2px solid #2b2b2b;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+
+  #radios2{
+    color: #2b2b2b;
+    font-size: 16px;
+    width: 150px;
+    height: 40px;
+    border: 2px solid #2b2b2b;
+    border-radius: 5px;
+    padding: 8px 5px 10px 10px;
+    margin: 5px 8px;
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  #radios2:before{
+    content: " ";
+    height: 14px;
+    width: 14px;
+    border: 2px solid #2b2b2b;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+
+
+  .container-form .form .section .input_field div{
+    display: flex;
+  }
+  input[type="radio"]:checked + #radios{
+    background-color: #2b2b2b;
+    color: white;
+  }
+  input[type="radio"]:checked + #radios:before{
+    height: 7px;
+    width: 7px;
+    border: 4px solid white;
+    background-color: #2b2b2b;
+  }
+
+  input[type="radio"]:checked + #radios2{
+    background-color: #2b2b2b;
+    color: white;
+  }
+  input[type="radio"]:checked + #radios2:before{
+    height: 7px;
+    width: 7px;
+    border: 4px solid white;
+    background-color: #2b2b2b;
+  }
+
+
+
+
+  
+  @media (max-width: 800px){
+    .container-form .form .section .input_field{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .container-form .form .section .input_field label{
+        margin-bottom: 8px;
+    }
+  }
+  @media (max-width: 750px){
+    .container-form .form .section .input_field .fuel_div{
+        display: block;
+    }
+    .container-form .form .section .input_field .fuel_div #radios{
+        margin-bottom: 10px;
+    }
+  }
+  @media (max-width: 375px){
+    .container-form{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+  }
