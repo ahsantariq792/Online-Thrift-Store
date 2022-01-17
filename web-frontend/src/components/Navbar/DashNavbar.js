@@ -61,7 +61,7 @@ function DashNavbar() {
 
 
                             <li>
-                                <Link to="/" onClick={logout} className="nav-itms" style={{ fontWeight:"600"}}>Logout</Link>
+                                <Link to="/" onClick={logout} className="nav-itms" style={{ fontWeight:"600", color: "red", marginLeft: "10%"}}>Logout</Link>
                             </li>
 
                         </Nav>

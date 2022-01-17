@@ -140,13 +140,14 @@ function Loginform() {
             <div style={{ fontFamily: "Impact, Haettenschweiler" }}>
               <h1 className="m-5"><center>THRIFT STORE</center></h1>
             </div><br /><br />
-            <div className="mx-2" style={{ border: "2px solid black" }}>
-              <p className="para1"><center>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Facere dolorum consequatur quidem repudiandae repellat
-                alias fuga maxime veniam magni aperiam.</center></p>
+            <div className="mx-2" style={{ color: "grey", textAlign: "center" }}>
+              <p className="para1"><center>Thrift store is a trusted community marketplace for people to list, discover and then buy/sell online
+                                around the country. Whether it is an appartment or a car, Thrift store connects people to unqiue experiences at any
+                                price point and with the world class customer service and a growing community of users. Thrift Store is the easiest
+                                way for people to buy/sell for their financial services and addressing the underlying barriers to financial access</center></p>
             </div><br /><br /><br />
             <div className="pic1" ><center>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_l35eL1BNdqkRp5kgeS2jpdurdXUQYwtdQ&usqp=CAU" /></center>
+              <img style={{height: "300px"}} src=" https://wallpapercave.com/wp/wp8918291.jpg " /></center>
             </div>
           </div>
           <div className="col-md-6  p-5" style={{ backgroundColor: "rgba(128, 128, 128, 0.274)" }}>

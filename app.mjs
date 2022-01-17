@@ -135,6 +135,21 @@ app.post('/api/post_ad_vehicle', async (req, res) => {
     }
 })
 
+app.get("/api/v1/get_ad_vehicle", (req, res) => {
+    
+    Vehicle.find()
+        .sort({ created: "desc" })
+        .then(admdata => res.json(admdata))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+
+
+
+
+
+
 const House = mongoose.model('Houses', {
     title: {
         type: String,
@@ -214,6 +229,23 @@ app.post('/api/post_ad_house', async (req, res) => {
         }).catch((error) => { console.log(error) })
     }
 })
+
+
+app.get("/api/v1/get_ad_house", (req, res) => {
+    
+    House.find()
+        .sort({ created: "desc" })
+        .then(admdata => res.json(admdata))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+
+
+
+
+
+
 
 
 app.get('/api/v1/signup', (req, res) => {

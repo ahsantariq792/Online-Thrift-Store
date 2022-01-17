@@ -18,15 +18,21 @@ export default function ImgMediaCard(props) {
         />
         <CardContent className="cardcontent">
           <Typography gutterBottom variant="h5" component="div">
-            {props.title}
+            Title: {props.title}
           </Typography>
           <Typography variant="h6" color="text.secondary">
-            {props.price}
+            {props.make}
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            Condition: {props.condition}
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            Price: {props.price}
           </Typography>
         </CardContent>
         <CardActions className="order-btn">
-          <Button variant="contained" className="order">Order Now</Button>
-        </CardActions>
+          <Button variant="contained" className="order">See Details</Button>
+        </CardActions>  
       </Card>
   );
 }
