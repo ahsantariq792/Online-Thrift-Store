@@ -64,8 +64,25 @@ const validationSchema = yup.object({
 
 
 
-const submit = (values) => {
+const submit =async (values) => {
     console.log("values", values)
+    const { title,floors,bedroom,bathroom,drawingroom,lounge,area,furniture,city,state, description, price, name,phone,address } = values;
+    const res = await fetch('http://localhost:5000/api/post_ad_house', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title,floors,bedroom,bathroom,drawingroom,lounge,area,furniture,city,state, description, price, name,phone,address
+      })
+    })
+    const data = await res.json()
+    if (data.status === 422 || !data) {
+      window.alert("invalid registration")
+    } else {
+      window.alert("registration successfully")
+    }
+    console.log("SUBMIT_values", values)
 }
 
 
@@ -80,7 +97,7 @@ function Houseform() {
             phone: '',
             description: '',
             title: '',
-            condition: '',
+            furniture: '',
             floors: '',
             bedroom: '',
             bathroom: '',
@@ -422,13 +439,13 @@ function Houseform() {
                                 <label for="condition" className="form-table">Furnished</label>
                                 <div className="furnished_div">
                                     <input type="radio" className="form-input" id="furnished"
-                                        name="condition"
+                                        name="furniture"
                                         value="furnished"
                                         onChange={formik.handleChange} />
                                     <label for="furnished" id="radios2">Furnished</label>
 
                                     <input type="radio" className="form-input" id="unfurnished"
-                                        name="condition"
+                                        name="furniture"
                                         value="unfurnished"
                                         onChange={formik.handleChange}
                                     />

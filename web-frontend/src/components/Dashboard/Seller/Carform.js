@@ -73,14 +73,33 @@ const validationSchema = yup.object({
 
 
 
-const submit = (values) => {
-  console.log("values", values)
+const submit =async  (values) => {
+  const { title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name,phone } = values;
+  console.log("SUBMIT_values", values)
+
+  const res = await fetch('http://localhost:5000/api/post_ad_vehicle', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      title,make,year,kms,registeredarea,condition,city,state, description, price, name,phone,fueltype
+    })
+  })
+  const data = await res.json()
+  if (data.status === 422 || !data) {
+    window.alert("invalid registration")
+  } else {
+    window.alert("registration successfully")
+  }
+  console.log("SUBMIT_values", values)
 }
 
 
 
 
 function App() {
+
 
 
   const formik = useFormik({
@@ -95,6 +114,7 @@ function App() {
       title: '',
       make: '',
       state: '',
+      fueltype:'',
       registeredarea:'',
       city:'',
       condition:'',

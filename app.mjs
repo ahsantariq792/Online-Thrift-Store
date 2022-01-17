@@ -38,7 +38,7 @@ app.get("/", (req, res, next) => {
 
 
 
-mongoose.connect("mongodb+srv://userpost:1234@userpost.amdns.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://ahsan:1234@thrift-system.8903a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
 const UserSchema = new mongoose.Schema({
     name: String,
@@ -62,6 +62,158 @@ const Post = mongoose.model('Post', {
     created: { type: Date, default: Date.now },
 
 });
+
+const Vehicle = mongoose.model('Vehicels', {
+    title: {
+        type: String,
+        required: true
+    },
+    make: {
+        type: String,
+        required: true
+    },
+    year: {
+        type: String,
+        required: true
+    },
+    fueltype: {
+        type: String,
+        required: true
+    },
+    kms: {
+        type: String,
+        required: true
+    },
+    registeredarea: {
+        type: String,
+        required: true
+    },
+    condition: {
+        type: String,
+        required: true
+    },
+    images: {
+        type: [String],
+        
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    }
+
+})
+app.post('/api/post_ad_vehicle', async (req, res) => {
+    const { title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone } = req.body
+    if (!title || !make || !year || !fueltype || !kms || !registeredarea || !condition || !city || !state || !description || !price || !name || !phone) {
+        return (res.status(500).send("plz fill all fields")
+        ) 
+    } else {
+        const table = new Vehicle({title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone})
+        table.save().then(() => {
+            console.log("Ad uploaded successfully"); res.status(200).send('Ad uploaded successfully')
+        }).catch((error) => { console.log(error) })
+    }
+})
+
+const House = mongoose.model('Houses', {
+    title: {
+        type: String,
+        required: true
+    },
+    floors: {
+        type: String,
+        required: true
+    },
+    bedroom: {
+        type: String,
+        required: true
+    },
+    bathroom: {
+        type: String,
+        required: true
+    },
+    furniture: {
+        type: String,
+        required: true
+    },
+    drawingroom: {
+        type: String,
+        required: true
+    },
+    lounge: {
+        type: [String],
+        required: true
+    },
+    area: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: String,
+        reuired: true
+    },
+    images: {
+        type: [String],
+
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    }
+})
+
+app.post('/api/post_ad_house', async (req, res) => {
+    const { title,floors,bedroom,bathroom,drawingroom,lounge,area,furniture,city,state, description, price, name,phone,address } = req.body
+    if (!title || !floors || !bedroom || !bathroom || !furniture || !drawingroom || !lounge || !area || !description || !price  || !name || !phone || !city || !state|| !address) {
+        return (res.status(500).send("plz fill all fields")
+        ) 
+    } else {
+        const table = new House({title,floors,bedroom,bathroom,drawingroom,lounge,area,furniture,city,state, description, price, name,phone,address  })
+        table.save().then(() => {
+            console.log("Ad uploaded successfully"); res.status(200).send('Ad uploaded successfully')
+        }).catch((error) => { console.log(error) })
+    }
+})
 
 
 app.get('/api/v1/signup', (req, res) => {
