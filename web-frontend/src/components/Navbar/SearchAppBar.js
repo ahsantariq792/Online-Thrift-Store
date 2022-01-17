@@ -10,7 +10,7 @@ function SearchAppBar() {
         <>
             <Navbar bg="success" expand="lg">
                 <Container>
-                    <Navbar.Brand className="nav-main">React-Form</Navbar.Brand>
+                    <Navbar.Brand className="nav-main">TS</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

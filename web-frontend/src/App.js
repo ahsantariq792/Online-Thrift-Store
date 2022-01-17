@@ -29,6 +29,11 @@ import { GlobalContext } from './context/Context';
 import { useContext } from "react";
 import Vehicles from './components/Dashboard/Vehicles';
 import Properties from './components/Dashboard/Properties';
+import Help from './components/FAQ/Help';
+import Safety from './components/FAQ/Safety';
+import Posting from './components/FAQ/Posting';
+import Profilehelp from './components/FAQ/Profilehelp';
+import Legal from './components/FAQ/Legal';
 
 
 function App() {
@@ -137,6 +142,23 @@ function App() {
             <Contactus />
           </Route>
 
+          <Route path="/faq">
+            <Help />
+          </Route>
+
+          <Route path="/safety">
+            <Safety />
+          </Route>
+
+          <Route path="/legal">
+            <Legal />
+
+          </Route> <Route path="/posting">
+            <Posting />
+
+          </Route> <Route path="/profilehelp">
+            <Profilehelp />
+          </Route>
 
           <Redirect to="/" />
         </Switch>

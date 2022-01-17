@@ -29,9 +29,9 @@ function DashNavbar() {
 
     return (
         <>
-            <Navbar bg="success" expand="lg">
+            <Navbar bg="dark" expand="lg">
                 <Container>
-                    <Navbar.Brand className="nav-main">React-Form</Navbar.Brand>
+                    <Navbar.Brand className="nav-main">TS</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
@@ -54,6 +54,11 @@ function DashNavbar() {
                             <li>
                                 <Link to="/contactus" className="nav-itms">Contact US</Link>
                             </li>
+
+                            <li>
+                                <Link to="/faq" className="nav-itms">FAQ</Link>
+                            </li>
+
 
                             <li>
                                 <Link to="/" onClick={logout} className="nav-itms" style={{ fontWeight:"600"}}>Logout</Link>

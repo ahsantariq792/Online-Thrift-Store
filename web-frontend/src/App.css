@@ -12,7 +12,6 @@ h3{
 .item{
   text-decoration: none;
   color: white;
-
 }
 
 
@@ -20,13 +19,13 @@ h3{
 h2{
   font-size: 40px;
   position: relative;
-  top: 10%;
+  /* top: 10%; */
   /* left: 20%; */
   font-family: cursive;
 }
 
 
-form{
+.user-form{
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -53,6 +52,23 @@ form{
   left: 20%;
   top: 2% !important;
   overflow: hidden !important;
+}
+
+#userbtn{
+
+height: 40px;
+}
+
+.userbtn{
+  height: 42px !important;
+
+}
+
+
+.error{
+  position: absolute;
+  color:red;
+  font-size: .6rem;
 }
 
 #post-form{
@@ -92,11 +108,18 @@ form{
   font-size: 100%;
 }
 
-form .inputbox{
-  margin: 10px !important;
+ .inputbox{
+  /* margin: 10px !important;
   width: 80% !important;
   position: relative;
-  left: 10%;
+  left: 10%; */
+
+  border: 0;
+  height: 40px;
+  width: 100% !important;
+  margin: 3% !important;
+  border-radius: 0;
+  border-bottom: 1px solid #ebebeb;
 
 }
 
@@ -184,9 +207,10 @@ p.buttonbox {
 }
 
 .nav-main{
-  color: white !important;
+  /* color: white !important; */
+  color: green !important;
   font-weight: 600;
-  font-size: 24px !important;
+  font-size: 28px !important;
   margin-right: 2% !important;
 }
 
@@ -231,6 +255,101 @@ Link{
   height: 200px;
   margin-bottom: 2%;
 }
+
+/* Faq   */
+
+.container-md{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #51644f;
+}
+
+
+.content-box{
+  padding: 20px;
+}
+
+
+/* faqssssss */
+
+
+/* help */
+
+.help-heading {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: #51644f	;
+  text-align: center;
+}
+
+.faq-a:link{
+  text-decoration: none;
+  color: #51644f	;
+}
+.faq-a:visited{
+  text-decoration: none;
+  color: #51644f	;
+}
+.faq-a .help-content:hover{
+  background-color: #51644f;
+  color: white;
+}
+.help-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.column {
+  float: left;
+  width: 30%;
+  padding: 20px;
+}
+.help-content{
+  margin: 10px;
+  border: 2px solid black;
+  padding: 10px;
+  height: 125px;
+  text-align: center;
+  
+}
+.help-h3{
+  text-align: center;
+  font-size: 24px;
+}
+.help-para{
+  padding: 5px;
+  overflow: hidden;
+  font-size: 20px;
+}
+
+
+
+
+
+
+
+
+.faq-h1 {
+  text-align: center;
+  padding: 20px;
+  font-weight: 600;
+  text-shadow: 1px;
+}
+
+.faq-h2,
+.faq-h3,
+.faq-h4 {
+  padding: 10px;
+}
+
+.faq-h2 {
+  font-weight: 500;
+  font-size: 3ch
+}
+
+/* .btn {
+  margin-top: 10px;
+  margin-left: 10px;
+} */
 
 
 /* post card css */
@@ -481,17 +600,99 @@ Link{
 
 
 
+/* footer */
+
+.containerfoot{
+	max-width: 1170px;
+	margin:auto;
+	height: fit-content;
+	font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: row !important;
+
+}
+.footerrow{
+	display: flex !important;
+	flex-wrap: wrap !important;
+  flex-direction: row !important;
+}
+.footercol ul{
+	list-style: none;
+	margin: 50px;
+}
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+	margin-left: 30px;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left: 10%;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 120px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+
+.footer-col ul li {
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li :hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+
+
+
+
 
 
 /* ///////Contact form/// */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 
 .contact-container {

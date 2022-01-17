@@ -19,13 +19,13 @@ function Aboutus() {
                             <h1>About Us</h1>
                         </div>
                         <div class="about-text">
-                            <h2>A Short-Term Loan That Brings Long-Term Happiness </h2>
-                            <p>We are committed to facilitate the entire loan lifecycle. Many People around the world are unbanked and can't
-                                access the financial services they need. So this storeis founded with a mission to expand financial access to help underserved
-                                communities. We do this by crowdfunding loans for the underserved, improving the quality and cost of financial services, and addressing
-                                the underlying barriers to financial access.</p>
+                            <h2>Thrift Store</h2>
+                            <p>Thrift store is a trusted community marketplace for people to list, discover and then buy/sell online
+                                around the country. Whether it is an appartment or a car, Thrift store connects people to unqiue experiences at any
+                                price point and with the world class customer service and a growing community of users. Thrift Store is the easiest
+                                way for people to buy/sell for their financial services and addressing the underlying barriers to financial access</p>
                             <div class="about-button">
-                                <a href="">Read More</a>
+                                <a>Read More</a>
                             </div>
                         </div>
                         <div class="social">

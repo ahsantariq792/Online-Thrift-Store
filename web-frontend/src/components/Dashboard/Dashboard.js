@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import Button from "@mui/material/Button";
 import '../../App.css';
 import CenteredTabs from '../UI-components/Tabs';
-
+import Footer from '../UI-components/Footer';
 
 
 function Dashboard() {
@@ -50,6 +50,8 @@ function Dashboard() {
                     price="Rs 2300/-"
                 />
             </div>
+
+            <Footer />
         </>
     );
 }
