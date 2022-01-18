@@ -237,7 +237,7 @@ p.buttonbox {
   color: white;
   margin-right: 24px ;
   margin-left: 24px ;
-  font-size: 22px;
+  font-size: 18px;
 
 }
 
@@ -245,7 +245,7 @@ p.buttonbox {
   /* color: white !important; */
   color: green !important;
   font-weight: 600;
-  font-size: 28px !important;
+  font-size: 24px !important;
   margin-right: 4% !important;
 }
 

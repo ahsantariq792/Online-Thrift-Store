@@ -8,7 +8,7 @@ function SearchAppBar() {
 
     return (
         <>
-            <Navbar bg="success" expand="lg">
+            <Navbar bg="dark" expand="lg">
                 <Container>
                     <Navbar.Brand className="nav-main">TS</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
