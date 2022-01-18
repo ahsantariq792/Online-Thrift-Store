@@ -201,7 +201,8 @@ p.buttonbox {
 .nav-itms{
   text-decoration: none !important;
   color: white;
-  margin-right: 10px ;
+  margin-right: 24px ;
+  margin-left: 24px ;
   font-size: 22px;
 
 }
@@ -211,7 +212,7 @@ p.buttonbox {
   color: green !important;
   font-weight: 600;
   font-size: 28px !important;
-  margin-right: 2% !important;
+  margin-right: 4% !important;
 }
 
 Link{
@@ -481,6 +482,9 @@ Link{
   color: black;
 }
 
+.tabs:focus{
+  color: red;
+}
 
 
 /* //////About us////// */

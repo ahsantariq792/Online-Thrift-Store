@@ -33,7 +33,7 @@ function Dashboard() {
     return (
         <>
             <CenteredTabs />
-            <h1 style={{ margin: '2%' }}>Dashboard</h1>
+            <h1 style={{ margin: '2%', textAlign: 'center', color: "grey"  }}>Welcome</h1>
 
             <div className="dashboard-main">
 

@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 
 import Button from "@mui/material/Button";
 import '../../App.css';
+import Footer from '../UI-components/Footer';
+
 import CenteredTabs from '../UI-components/Tabs';
 import { baseurl } from '../../core';
 import axios from 'axios';
@@ -34,7 +36,7 @@ function Vehicles() {
     return (
         <>
             <CenteredTabs />
-            <h1 style={{ margin: '2%' }}>Vehicles For Sale</h1>
+            <h1 style={{ margin: '2%', textAlign: 'center', color: "grey"  }}>Vehicles For Sale</h1>
 
             <div className="dashboard-main">
                 {posts?.map((posts, index) => (
@@ -48,6 +50,8 @@ function Vehicles() {
                     />
                 ))}
             </div>
+            <Footer />
+
         </>
     );
 }
