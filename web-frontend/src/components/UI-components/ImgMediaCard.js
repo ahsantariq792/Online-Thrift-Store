@@ -6,6 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "../../App.css"
+import { Link } from 'react-router-dom'
+
 
 export default function ImgMediaCard(props) {
   return (
@@ -31,7 +33,9 @@ export default function ImgMediaCard(props) {
           </Typography>
         </CardContent>
         <CardActions className="order-btn">
+        <Link to={`/dash/${props.id}`}>
           <Button variant="contained" className="order">See Details</Button>
+          </Link>
         </CardActions>  
       </Card>
   );
