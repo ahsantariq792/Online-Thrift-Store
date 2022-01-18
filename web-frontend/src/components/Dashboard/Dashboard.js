@@ -23,9 +23,9 @@ function Dashboard() {
                 withCredentials: true
             })
             .then(response => {
-                console.log(response.data)
+                console.log("asad",response.data)
                 setPosts(()=> response.data)
-                console.log(posts)
+                // console.log(posts)
             })
             .catch(err => alert("Error in getting data"))
     }, [])
@@ -44,6 +44,18 @@ function Dashboard() {
                         condition={posts?.condition}
                         link={posts?.images} 
                         price={posts?.price}
+                        city={posts?.city}
+                        description={posts?.description}
+                        fueltype={posts?.fueltype}
+                        kms={posts?.kms}
+                        name={posts?.name}
+                        phone={posts?.phone}
+                        registeredarea={posts?.registeredarea}
+                        state={posts?.state}
+                        year={posts?.year}
+                        id={posts?._id}
+
+
                 
                     />
                 ))}

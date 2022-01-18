@@ -123,12 +123,12 @@ const Vehicle = mongoose.model('Vehicels', {
 
 })
 app.post('/api/post_ad_vehicle', async (req, res) => {
-    const { title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone } = req.body
+    const { title,make,year,fueltype,kms,registeredarea,condition,city,state,images, description, price, name, phone } = req.body
     if (!title || !make || !year || !fueltype || !kms || !registeredarea || !condition || !city || !state || !description || !price || !name || !phone) {
         return (res.status(500).send("plz fill all fields")
         ) 
     } else {
-        const table = new Vehicle({title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone})
+        const table = new Vehicle({title,make,year,images,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone})
         table.save().then(() => {
             console.log("Ad uploaded successfully"); res.status(200).send('Ad uploaded successfully')
         }).catch((error) => { console.log(error) })
@@ -136,11 +136,20 @@ app.post('/api/post_ad_vehicle', async (req, res) => {
 })
 
 app.get("/api/v1/get_ad_vehicle", (req, res) => {
-    
+    console.log("asad")
+
     Vehicle.find()
         .sort({ created: "desc" })
         .then(admdata => res.json(admdata))
         .catch(err => res.status(400).json('Error: ' + err));
+});
+
+app.get("/api/v1/get_ad_vehicle/:id",async (req, res) => {
+    const id =req.params.id
+
+
+    const table=await Vehicle.findOne({_id:id})
+    res.json(table)
 });
 
 
