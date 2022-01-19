@@ -101,13 +101,15 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
   }
   .container-form .form .section .input_field .img_box{
-    width: 100px;
-    min-width: 100px;
-    height: 100px;
-    min-height: 100px;
-    position: relative;
+    /* width: 100px; */
+    /* min-width: 100px; */
+    /* height: 100px; */
+    /* min-height: 100px; */
+    /* position: relative; */
+    padding: 10px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -115,9 +117,25 @@
     justify-content: center;
     margin: 5px 5px;
     padding: 5px;
-    border: 2px solid #999999;
+    /* border: 2px solid #999999; */
     cursor: pointer;
     overflow: hidden;
+    flex-direction: column;
+
+  }
+
+  .img_icon{
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    min-height: 60px;
+    position: relative;
+    
+
+  }
+
+  .container-form .form .section .input_field .img_box input{
+    padding: 10px;
   }
   .container-form .form .section .input_field .img_box img{
     width: 30px;

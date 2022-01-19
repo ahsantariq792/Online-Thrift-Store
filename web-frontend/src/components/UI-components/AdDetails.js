@@ -39,13 +39,13 @@ export default function AdDetails(props) {
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src={posts.images[0]} class="d-block w-100" alt="..."></img>
+                <img src={posts?.images} class="d-block w-100" alt="..."></img>
             </div>
             <div class="carousel-item">
-                <img src={posts.images[1]} class="d-block w-100" alt="..."></img>
+                <img src={posts?.images} class="d-block w-100" alt="..."></img>
             </div>
             <div class="carousel-item">
-                <img src={posts.images[2]} class="d-block w-100" alt="..."></img>
+                <img src={posts?.images} class="d-block w-100" alt="..."></img>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"

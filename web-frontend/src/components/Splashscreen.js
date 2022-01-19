@@ -5,7 +5,7 @@ function Splashscreen() {
     return (
         <>
             <div className="splashscreen">
-                <img src="https://c.tenor.com/sOcqo6-1sXQAAAAM/loading-bar.gif" alt="splashscreen" />
+                <img src="https://gifimage.net/wp-content/uploads/2017/11/exito-gif-5.gif" alt="splashscreen" />
             </div>
         </>
 

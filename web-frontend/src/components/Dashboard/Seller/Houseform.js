@@ -188,7 +188,7 @@ function Houseform() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                title, floors, bedroom, bathroom, drawingroom, lounge, area, furniture, city, state, description, price, name, phone, address
+                title, floors, bedroom, bathroom, drawingroom, lounge, area, furniture, city, state, description, price, name, phone, address, imageurl1, imageurl2, imageurl3,
             })
         })
         const data = await res.json()
@@ -712,11 +712,18 @@ function Houseform() {
 
                         <div className="section">
                             <div className="header_title">
-                                UPLOAD UPTO 20 PHOTOS
+                                <img src={addphoto} className="img_icon" alt="" /> UPLOAD UPTO 3 PHOTOS
                             </div>
                             <div className="input_field">
                                 <div className="img_container-form">
                                     <div className="img_box">
+
+
+                                        <input type="file" onChange={(e) => setImage1(e.target.files[0])} />
+                                        <input type="file" onChange={(e) => setImage2(e.target.files[0])} />
+                                        <input type="file" onChange={(e) => setImage3(e.target.files[0])} />
+                                    </div>
+                                    {/* <div className="img_box">
                                         <img src={addphoto} alt="" />
                                     </div>
                                     <div className="img_box">
@@ -772,10 +779,7 @@ function Houseform() {
                                     </div>
                                     <div className="img_box">
                                         <img src={addphoto} alt="" />
-                                    </div>
-                                    <div className="img_box">
-                                        <img src={addphoto} alt="" />
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

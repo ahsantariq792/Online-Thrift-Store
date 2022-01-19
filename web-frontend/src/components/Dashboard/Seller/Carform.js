@@ -139,7 +139,7 @@ function App() {
         });
       }
     );
-    
+
 
 
     const storageRef3 = ref(storage, `images/vehicle_image/${image3.name}`);
@@ -200,7 +200,7 @@ function App() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        title, make, year, kms, registeredarea, condition, city, state, description, price, name, phone, fueltype, imageurl1 ,imageurl2,imageurl3,
+        title, make, year, kms, registeredarea, condition, city, state, description, price, name, phone, fueltype, imageurl1, imageurl2, imageurl3,
       })
     })
     const data = await res.json()
@@ -492,12 +492,12 @@ function App() {
 
             <div className="section">
               <div className="header_title">
-                UPLOAD UPTO 20 PHOTOS
+                <img src={addphoto} className="img_icon" alt="" /> UPLOAD UPTO 3 PHOTOS
               </div>
               <div className="input_field">
                 <div className="img_container-form">
                   <div className="img_box">
-                    <img src={addphoto} alt="" />
+                    {/* <img src={addphoto} alt="" /> */}
 
                     <input type="file" onChange={(e) => setImage1(e.target.files[0])} />
                     <input type="file" onChange={(e) => setImage2(e.target.files[0])} />

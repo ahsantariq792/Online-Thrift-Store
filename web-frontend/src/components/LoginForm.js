@@ -9,7 +9,7 @@ import axios from 'axios';
 import { baseurl } from '../core';
 import { GlobalContext } from '../context/Context';
 import { useContext } from "react";
-
+import { Link } from 'react-router-dom';
 
 const validationSchema = yup.object({
   email: yup
@@ -199,7 +199,7 @@ function Loginform() {
                 <div className="pb-2">
                   <button type="submit" id="userbtn" className="btn btn-dark w-100 font-weight-bold mt-2">LOGIN</button>
                 </div>
-                <p><center>New User?&nbsp;&nbsp;&nbsp;&nbsp;<b>SIGNUP HERE</b> </center></p>
+                <p><center>New User?&nbsp;&nbsp;&nbsp;&nbsp;<b><Link to="/signup" style={{textDecoration: "none", color:"black"}}>SIGNUP HERE</Link></b> </center></p>
               </form>
               <div className="sideline"><center>----------------------  OR   ----------------------</center></div>
               <div><br />
