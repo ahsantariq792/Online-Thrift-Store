@@ -53,16 +53,6 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
-const Post = mongoose.model('Post', {
-    name: String,
-    post: String,
-    email: String,
-    userId: String,
-    time: String,
-    created: { type: Date, default: Date.now },
-
-});
-
 const Vehicle = mongoose.model('Vehicels', {
     title: {
         type: String,
@@ -187,7 +177,7 @@ const House = mongoose.model('Houses', {
         required: true
     },
     lounge: {
-        type: [String],
+        type: String,
         required: true
     },
     area: {
@@ -229,12 +219,14 @@ const House = mongoose.model('Houses', {
 })
 
 app.post('/api/post_ad_house', async (req, res) => {
-    const { title,floors,bedroom,bathroom,drawingroom,lounge,area,furniture,city,state, description, price, name,phone,address } = req.body
+    const { title,floors,bedroom,bathroom,drawingroom,lounge,area,furniture,city,state, description, price, name,phone,address, imageurl1, imageurl2, imageurl3 } = req.body
     if (!title || !floors || !bedroom || !bathroom || !furniture || !drawingroom || !lounge || !area || !description || !price  || !name || !phone || !city || !state|| !address) {
         return (res.status(500).send("plz fill all fields")
         ) 
     } else {
-        const table = new House({title,floors,bedroom,bathroom,drawingroom,lounge,area,furniture,city,state, description, price, name,phone,address  })
+        const images= []
+        images.unshift(imageurl1,imageurl2,imageurl3) 
+        const table = new House({title,floors,bedroom,bathroom,drawingroom,lounge,area,furniture,city,state, description, price, name,phone,address, images  })
         table.save().then(() => {
             console.log("Ad uploaded successfully"); res.status(200).send('Ad uploaded successfully')
         }).catch((error) => { console.log(error) })

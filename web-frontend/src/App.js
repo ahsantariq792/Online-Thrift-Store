@@ -13,6 +13,8 @@ import Carform from './components/Dashboard/Seller/Carform';
 import Houseform from './components/Dashboard/Seller/Houseform';
 import Sellerboard from './components/Dashboard/Seller/Sellerboard';
 import AdDetails from './components/UI-components/AdDetails';
+import PropertiesDetails from './components/UI-components/PropertiesDetails';
+
 
 import axios from 'axios';
 import { baseurl } from './core';
@@ -115,9 +117,13 @@ function App() {
 
             <Dashboard />
           </Route>
+
           <Route exact path="/dash/:id">
-            
             <AdDetails />
+          </Route>
+
+          <Route exact path="/dashproperties/:id">
+            <PropertiesDetails />
           </Route>
 
           <Route path="/vehicles">

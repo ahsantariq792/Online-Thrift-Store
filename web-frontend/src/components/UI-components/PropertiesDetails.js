@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function Details() {
+function PropertiesDetails() {
     return(
         <>
         <div class="detail-container py-5 mt-05">
@@ -107,4 +107,4 @@ function Details() {
     )
 }
 
-export default  Details
+export default  PropertiesDetails
