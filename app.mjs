@@ -93,8 +93,7 @@ const Vehicle = mongoose.model('Vehicels', {
         required: true
     },
     images: {
-        type: [String],
-        
+        type: [String],    
     },
     description: {
         type: String,
@@ -123,11 +122,14 @@ const Vehicle = mongoose.model('Vehicels', {
 
 })
 app.post('/api/post_ad_vehicle', async (req, res) => {
-    const { title,make,year,fueltype,kms,registeredarea,condition,city,state,images, description, price, name, phone } = req.body
+    const { title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone, imageurl1, imageurl2, imageurl3  } = req.body
+    console.log(title)
     if (!title || !make || !year || !fueltype || !kms || !registeredarea || !condition || !city || !state || !description || !price || !name || !phone) {
         return (res.status(500).send("plz fill all fields")
         ) 
     } else {
+        const images= []
+        images.unshift(imageurl1,imageurl2,imageurl3) 
         const table = new Vehicle({title,make,year,images,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone})
         table.save().then(() => {
             console.log("Ad uploaded successfully"); res.status(200).send('Ad uploaded successfully')

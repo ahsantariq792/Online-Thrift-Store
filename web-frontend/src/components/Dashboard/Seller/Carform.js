@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { TextField } from '@mui/material';
-
+import { ref, storage, uploadBytesResumable, getDownloadURL } from '../../../firebase'
 
 
 
@@ -69,36 +69,151 @@ const validationSchema = yup.object({
 
 
 
-
-
-
-
-const submit =async  (values) => {
-  const { title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name,phone } = values;
-  console.log("SUBMIT_values", values)
-
-  const res = await fetch('http://localhost:5000/api/post_ad_vehicle', {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      title,make,year,kms,registeredarea,condition,city,state, description, price, name,phone,fueltype
-    })
-  })
-  const data = await res.json()
-  if (data.status === 422 || !data) {
-    window.alert("invalid registration")
-  } else {
-    window.alert("registration successfully")
-  }
-  console.log("SUBMIT_values", values)
-}
-
-
-
-
 function App() {
+
+  const [image1, setImage1] = useState();
+  const [image2, setImage2] = useState();
+  const [image3, setImage3] = useState();
+  // const [imageurl, setImageurl] = useState({"image1": '',"image2": '',"image3": ''});
+  const [imageurl1, setImageurl1] = useState();
+  const [imageurl2, setImageurl2] = useState();
+  const [imageurl3, setImageurl3] = useState();
+
+
+  const submit = async (values) => {
+
+    const storageRef1 = ref(storage, `images/vehicle_image/${image1.name}`);
+    const uploadTask1 = uploadBytesResumable(storageRef1, image1);
+
+    uploadTask1.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        console.log("error in uploading image", error)
+      },
+      () => {
+        getDownloadURL(uploadTask1.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          setImageurl1(() => downloadURL)
+          console.log("imageurl", imageurl1)
+
+        });
+      }
+    );
+
+    const storageRef2 = ref(storage, `images/vehicle_image/${image2.name}`);
+    const uploadTask2 = uploadBytesResumable(storageRef2, image2);
+
+    uploadTask2.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        console.log("error in uploading image", error)
+      },
+      () => {
+        getDownloadURL(uploadTask2.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          setImageurl2(() => downloadURL)
+          console.log("imageurl", imageurl2)
+
+        });
+      }
+    );
+    
+
+
+    const storageRef3 = ref(storage, `images/vehicle_image/${image3.name}`);
+    const uploadTask3 = uploadBytesResumable(storageRef3, image3);
+
+    uploadTask3.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        console.log("error in uploading image", error)
+      },
+      () => {
+        getDownloadURL(uploadTask3.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          setImageurl3(() => downloadURL)
+          console.log("imageurl3", imageurl3)
+
+        });
+      }
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const { title, make, year, fueltype, kms, registeredarea, condition, city, state, description, price, name, phone } = values;
+    console.log("SUBMIT_values", values)
+
+    const res = await fetch('http://localhost:5000/api/post_ad_vehicle', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title, make, year, kms, registeredarea, condition, city, state, description, price, name, phone, fueltype, imageurl1 ,imageurl2,imageurl3,
+      })
+    })
+    const data = await res.json()
+    if (data.status === 422 || !data) {
+      window.alert("invalid registration")
+    } else {
+      window.alert("registration successfully")
+    }
+    console.log("SUBMIT_values", values)
+  }
+
+
+
 
 
 
@@ -114,10 +229,10 @@ function App() {
       title: '',
       make: '',
       state: '',
-      fueltype:'',
-      registeredarea:'',
-      city:'',
-      condition:'',
+      fueltype: '',
+      registeredarea: '',
+      city: '',
+      condition: '',
     },
     onSubmit: submit
   },
@@ -262,34 +377,34 @@ function App() {
                 <label className="form-table">Fuel</label>
                 <div className="fuel_div">
 
-                  <input type="radio" className="form-input" id="cng" 
-                  name="fueltype" 
-                  value= "CNG"
-                  onChange={formik.handleChange}
+                  <input type="radio" className="form-input" id="cng"
+                    name="fueltype"
+                    value="CNG"
+                    onChange={formik.handleChange}
                   />
                   <label for="cng" id="radios">CNG</label>
 
                   <input type="radio" className="form-input" id="diesel"
-                  name="fueltype" 
-                  value= "diesel"
-                  onChange={formik.handleChange}/>
+                    name="fueltype"
+                    value="diesel"
+                    onChange={formik.handleChange} />
                   <label for="diesel" id="radios">Diesel</label>
 
-                  <input type="radio" className="form-input" id="hybrid" name="fueltype"  
-                  value= "hybrid"
-                  onChange={formik.handleChange}/>
+                  <input type="radio" className="form-input" id="hybrid" name="fueltype"
+                    value="hybrid"
+                    onChange={formik.handleChange} />
                   <label for="hybrid" id="radios">Hybrid</label>
 
-                  <input type="radio" className="form-input" id="lpg" 
-                  name="fueltype" 
-                  value= "lpg"
-                  onChange={formik.handleChange}/>
+                  <input type="radio" className="form-input" id="lpg"
+                    name="fueltype"
+                    value="lpg"
+                    onChange={formik.handleChange} />
                   <label for="lpg" id="radios">LPG</label>
 
-                  <input type="radio" className="form-input" id="petrol" 
-                  name="fueltype"
-                  value= "petrol"
-                  onChange={formik.handleChange}/>
+                  <input type="radio" className="form-input" id="petrol"
+                    name="fueltype"
+                    value="petrol"
+                    onChange={formik.handleChange} />
                   <label for="petrol" id="radios">Petrol</label>
 
                 </div>
@@ -330,16 +445,16 @@ function App() {
               <div className="input_field">
                 <label className="form-table">Condition</label>
                 <div>
-                  <input type="radio" className="form-input" id="new" 
-                  name="condition" 
-                  value="new"
-                  onChange={formik.handleChange}
+                  <input type="radio" className="form-input" id="new"
+                    name="condition"
+                    value="new"
+                    onChange={formik.handleChange}
                   />
                   <label for="new" id="radios">New</label>
-                  <input type="radio" className="form-input" id="used" name="condition" 
-                  name="condition" 
-                  value="used"
-                  onChange={formik.handleChange}
+                  <input type="radio" className="form-input" id="used" name="condition"
+                    name="condition"
+                    value="used"
+                    onChange={formik.handleChange}
                   />
                   <label for="used" id="radios">Used</label>
                 </div>
@@ -383,8 +498,13 @@ function App() {
                 <div className="img_container-form">
                   <div className="img_box">
                     <img src={addphoto} alt="" />
+
+                    <input type="file" onChange={(e) => setImage1(e.target.files[0])} />
+                    <input type="file" onChange={(e) => setImage2(e.target.files[0])} />
+                    <input type="file" onChange={(e) => setImage3(e.target.files[0])} />
+
                   </div>
-                  <div className="img_box">
+                  {/* <div className="img_box">
                     <img src={addphoto} alt="" />
                   </div>
                   <div className="img_box">
@@ -440,7 +560,7 @@ function App() {
                   </div>
                   <div className="img_box">
                     <img src={addphoto} alt="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -473,16 +593,16 @@ function App() {
                 </div>
               </div>
 
-              
+
               <div className="input_field">
                 <label className="form-table">City</label>
                 <div className="custom_select">
                   <select
-                  name='city'
-                  id='city'
-                  value={formik.values.city}
-                  onChange={formik.handleChange}
-                   >
+                    name='city'
+                    id='city'
+                    value={formik.values.city}
+                    onChange={formik.handleChange}
+                  >
                     <option value="" disabled selected hidden>Select City</option>
 
 
