@@ -15,19 +15,24 @@ import axios from 'axios';
 function Dashboard() {
 
     const [posts, setPosts] = useState([])
-
+    console.log("saad",posts)
+    const getData=async()=>{
+        await axios.get(`${baseurl}/api/v1/get_ad_vehicle`,
+             {
+                 withCredentials: true
+             })
+             .then(response => {
+                 console.log(response.data)
+                 setPosts(()=> response.data)
+                 // console.log(posts)
+             })
+             .catch(err => alert("Error in getting data"))
+     }
+ 
 
     useEffect(() => {
-        axios.get(`${baseurl}/api/v1/get_ad_vehicle`,
-            {
-                withCredentials: true
-            })
-            .then(response => {
-                console.log("asad",response.data)
-                setPosts(()=> response.data)
-                // console.log(posts)
-            })
-            .catch(err => alert("Error in getting data"))
+
+        getData()
     }, [])
 
     return (
@@ -42,7 +47,7 @@ function Dashboard() {
                         title={posts?.title}
                         make={posts?.make}
                         condition={posts?.condition}
-                        link={posts?.images} 
+                        image={posts?.imageurl1} 
                         price={posts?.price}
                         city={posts?.city}
                         description={posts?.description}

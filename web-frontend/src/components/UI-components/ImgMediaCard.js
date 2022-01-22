@@ -10,13 +10,14 @@ import { Link } from 'react-router-dom'
 
 
 export default function ImgMediaCard(props) {
+  console.log("image",props.image)
   return (
       <Card className="card-main" sx={{ maxWidth: 345 }}>
         <CardMedia
           component="img"
-          alt="green iguana"
+          alt={props.title}
           height="190"
-          image={props.link}
+          image={props.image}
         />
         <CardContent className="cardcontent">
           <Typography gutterBottom variant="h5" component="div">

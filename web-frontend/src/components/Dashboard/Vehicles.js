@@ -18,19 +18,25 @@ import axios from 'axios';
 function Vehicles() {
 
     const [posts, setPosts] = useState([])
+    console.log("here",posts)
 
-
-    useEffect(() => {
-        axios.get(`${baseurl}/api/v1/get_ad_vehicle`,
+    const getData=async()=>{
+       await axios.get(`${baseurl}/api/v1/get_ad_vehicle`,
             {
                 withCredentials: true
             })
             .then(response => {
                 console.log(response.data)
                 setPosts(()=> response.data)
-                console.log(posts)
+                // console.log(posts)
             })
             .catch(err => alert("Error in getting data"))
+    }
+
+
+    useEffect(() => {
+        getData()
+
     }, [])
 
     return (
@@ -44,7 +50,7 @@ function Vehicles() {
                         title={posts?.title}
                         make={posts?.make}
                         condition={posts?.condition}
-                        link={posts?.images} 
+                        image={posts?.imageurl1} 
                         price={posts?.price}
 
                     />

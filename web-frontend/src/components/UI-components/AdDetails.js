@@ -10,19 +10,22 @@ export default function AdDetails(props) {
     console.log(id)
 
     const [posts, setPosts] = useState([])
-
+    console.log("this is ad details",posts)
+const getData= async ()=>{
+    await axios.get(`${baseurl}/api/v1/get_ad_vehicle/${id}`,
+    {
+        withCredentials: true
+    })
+    .then(response => {
+        console.log("asad",response.data)
+        setPosts(()=> response.data)
+        // console.log(posts)
+    })
+    .catch(err => alert("Error in getting data"))
+}
 
     useEffect(() => {
-        axios.get(`${baseurl}/api/v1/get_ad_vehicle/${id}`,
-            {
-                withCredentials: true
-            })
-            .then(response => {
-                console.log("asad",response.data)
-                setPosts(()=> response.data)
-                // console.log(posts)
-            })
-            .catch(err => alert("Error in getting data"))
+getData()
     }, [])
 
   return (
@@ -39,13 +42,13 @@ export default function AdDetails(props) {
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src={posts?.images} class="d-block w-100" alt="..."></img>
+                <img src={posts.imageurl1} class="d-block w-100" alt="..."></img>
             </div>
             <div class="carousel-item">
-                <img src={posts?.images} class="d-block w-100" alt="..."></img>
+                <img src={posts.imageurl2} class="d-block w-100" alt="..."></img>
             </div>
             <div class="carousel-item">
-                <img src={posts?.images} class="d-block w-100" alt="..."></img>
+                <img src={posts.imageurl3} class="d-block w-100" alt="..."></img>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"

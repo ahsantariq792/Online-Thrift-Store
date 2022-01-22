@@ -39,7 +39,9 @@ app.get("/", (req, res, next) => {
 
 
 
+// mongoose.connect("mongodb+srv://asadalikhan:asadalikhan@cluster0.hdvyr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 mongoose.connect("mongodb+srv://ahsan:1234@thrift-system.8903a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+
 
 const UserSchema = new mongoose.Schema({
     name: String,
@@ -83,8 +85,17 @@ const Vehicle = mongoose.model('Vehicels', {
         type: String,
         required: true
     },
-    images: {
-        type: [String],    
+    imageurl1: {
+        type: String,
+        required:true    
+    },
+    imageurl2: {
+        type: String,
+        required:true    
+    },
+    imageurl3: {
+        type: String,
+        required:true    
     },
     description: {
         type: String,
@@ -115,13 +126,13 @@ const Vehicle = mongoose.model('Vehicels', {
 app.post('/api/post_ad_vehicle', async (req, res) => {
     const { title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone, imageurl1, imageurl2, imageurl3  } = req.body
     console.log(title)
-    if (!title || !make || !year || !fueltype || !kms || !registeredarea || !condition || !city || !state || !description || !price || !name || !phone) {
+    if (!title || !make || !imageurl1 || !imageurl2 || !imageurl3 || !year || !fueltype || !kms || !registeredarea || !condition || !city || !state || !description || !price || !name || !phone) {
         return (res.status(500).send("plz fill all fields")
         ) 
     } else {
-        const images= []
-        images.unshift(imageurl1,imageurl2,imageurl3) 
-        const table = new Vehicle({title,make,year,images,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone})
+        // const images= []
+        // images.unshift(imageurl1,imageurl2,imageurl3) 
+        const table = new Vehicle({title,make,year,imageurl1,imageurl2,imageurl3,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone})
         table.save().then(() => {
             console.log("Ad uploaded successfully"); res.status(200).send('Ad uploaded successfully')
         }).catch((error) => { console.log(error) })
