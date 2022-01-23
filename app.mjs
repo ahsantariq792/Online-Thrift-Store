@@ -41,6 +41,16 @@ app.get("/", (req, res, next) => {
 
 // mongoose.connect("mongodb+srv://asadalikhan:asadalikhan@cluster0.hdvyr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 mongoose.connect("mongodb+srv://ahsan:1234@thrift-system.8903a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+const Post = mongoose.model('Post', {
+    name: String,
+    post: String,
+    email: String,
+    to_email:String,
+    userId: String,
+    time: String,
+    created: { type: Date, default: Date.now },
+
+});
 
 
 const UserSchema = new mongoose.Schema({
@@ -58,6 +68,10 @@ const User = mongoose.model('User', UserSchema);
 
 const Vehicle = mongoose.model('Vehicels', {
     title: {
+        type: String,
+        required: true
+    },
+    email: {
         type: String,
         required: true
     },
@@ -124,15 +138,13 @@ const Vehicle = mongoose.model('Vehicels', {
 
 })
 app.post('/api/post_ad_vehicle', async (req, res) => {
-    const { title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone, imageurl1, imageurl2, imageurl3  } = req.body
+    const { email,title,make,year,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone, imageurl1, imageurl2, imageurl3  } = req.body
     console.log(title)
-    if (!title || !make || !imageurl1 || !imageurl2 || !imageurl3 || !year || !fueltype || !kms || !registeredarea || !condition || !city || !state || !description || !price || !name || !phone) {
+    if (!email || !title || !make || !imageurl1 || !imageurl2 || !imageurl3 || !year || !fueltype || !kms || !registeredarea || !condition || !city || !state || !description || !price || !name || !phone) {
         return (res.status(500).send("plz fill all fields")
         ) 
     } else {
-        // const images= []
-        // images.unshift(imageurl1,imageurl2,imageurl3) 
-        const table = new Vehicle({title,make,year,imageurl1,imageurl2,imageurl3,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone})
+        const table = new Vehicle({email,title,make,year,imageurl1,imageurl2,imageurl3,fueltype,kms,registeredarea,condition,city,state, description, price, name, phone})
         table.save().then(() => {
             console.log("Ad uploaded successfully"); res.status(200).send('Ad uploaded successfully')
         }).catch((error) => { console.log(error) })
@@ -416,21 +428,49 @@ app.get('/api/v1/profile', (req, res) => {
 
 
 
+// app.post("/api/v1/post", (req, res) => {
+//     const newPost = new Post({
+//         name: req.body._decoded.name,
+//         post: req.body.post,
+//         userId: req.body._decoded._id,
+//         email: req.body._decoded.email,
+//         time: req.body.time
+//     });
+    
+//     newPost.save().then(() => {
+//         console.log("Post created");
+
+//         io.emit("POSTS", {
+//             post: req.body.post,
+//             userId: req.body._decoded._id,
+//             time: req.body.time,
+//             name: req.body._decoded.name,
+//             email: req.body._decoded.email
+//         });
+
+
+//         res.send("Post created");
+//     });
+// })
 app.post("/api/v1/post", (req, res) => {
+    console.log("/api/v1/post")
+    
+    console.log(req.body.to_email)
     const newPost = new Post({
         name: req.body._decoded.name,
         post: req.body.post,
         userId: req.body._decoded._id,
         email: req.body._decoded.email,
+        to_email:req.body.to_email,
         time: req.body.time
     });
-    
     newPost.save().then(() => {
         console.log("Post created");
 
         io.emit("POSTS", {
             post: req.body.post,
             userId: req.body._decoded._id,
+            to_email:req.body.to_email,
             time: req.body.time,
             name: req.body._decoded.name,
             email: req.body._decoded.email
@@ -441,11 +481,26 @@ app.post("/api/v1/post", (req, res) => {
     });
 })
 
-
-app.get("/api/v1/post", (req, res) => {
-    const page = Number(req.query.page);
+// app.get("/api/v1/post", (req, res) => {
+//     const page = Number(req.query.page);
     
-    Post.find()
+//     Post.find()
+//         .sort({ created: "desc" })
+//         .skip(page)
+//         .limit(2)
+//         .then(admdata => res.json(admdata))
+//         .catch(err => res.status(400).json('Error: ' + err));
+// });
+app.get("/api/v1/post/:to_email/:email", (req, res) => {
+    console.log("to_email",req.params.to_email)
+    const to_email=req.params.to_email;
+    console.log("email",req.params.email)
+    const email=req.params.email;
+    // const to_email="saima@gmail.com"
+    const page = Number(req.query.page);
+    // console.log("asad",to_email)
+    
+    Post.find({to_email,email})
         .sort({ created: "desc" })
         .skip(page)
         .limit(2)

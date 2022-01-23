@@ -14,6 +14,7 @@ import Houseform from './components/Dashboard/Seller/Houseform';
 import Sellerboard from './components/Dashboard/Seller/Sellerboard';
 import AdDetails from './components/UI-components/AdDetails';
 import PropertiesDetails from './components/UI-components/PropertiesDetails';
+import Chat from './components/UI-components/chat';
 
 
 import axios from 'axios';
@@ -152,6 +153,10 @@ function App() {
 
           <Route path="/contactus">
             <Contactus />
+          </Route>
+
+          <Route path="/chat/:to_email">
+            <Chat />
           </Route>
 
           <Route path="/faq">

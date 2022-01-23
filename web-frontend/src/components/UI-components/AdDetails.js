@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { useState,useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import "../../App.css"
 import { baseurl } from '../../core';
 import axios from 'axios';
 
 export default function AdDetails(props) {
+    // const email=posts.email
+    const [to_email,setTo_email]=useState()
     const { id } = useParams()
     console.log(id)
 
@@ -19,6 +21,7 @@ const getData= async ()=>{
     .then(response => {
         console.log("asad",response.data)
         setPosts(()=> response.data)
+        setTo_email(()=>response.data.email)
         // console.log(posts)
     })
     .catch(err => alert("Error in getting data"))
@@ -31,6 +34,7 @@ getData()
   return (
       
     <div class="container py-5">
+        <Link to={`/chat/${to_email}`}>CHAT WITH SELLER</Link>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
