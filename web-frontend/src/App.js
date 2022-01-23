@@ -15,7 +15,8 @@ import Sellerboard from './components/Dashboard/Seller/Sellerboard';
 import AdDetails from './components/UI-components/AdDetails';
 import PropertiesDetails from './components/UI-components/PropertiesDetails';
 import Chat from './components/UI-components/chat';
-
+import { MyChats } from './components/UI-components/myChats';
+import { SpecificChat } from './components/UI-components/specificChat';
 
 import axios from 'axios';
 import { baseurl } from './core';
@@ -122,6 +123,13 @@ function App() {
           <Route exact path="/dash/:id">
             <AdDetails />
           </Route>
+          <Route exact path="/mychats">
+            <MyChats />
+          </Route>
+          <Route exact path="/specificChat/:to_email">
+            <SpecificChat />
+          </Route>
+
 
           <Route exact path="/dashproperties/:id">
             <PropertiesDetails />

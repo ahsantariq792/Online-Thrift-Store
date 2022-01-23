@@ -58,6 +58,9 @@ function DashNavbar() {
                             <li>
                                 <Link to="/faq" className="nav-itms">FAQ</Link>
                             </li>
+                            <li>
+                                <Link to="/mychats" className="nav-itms">INBOX</Link>
+                            </li>
 
 
                             <li>

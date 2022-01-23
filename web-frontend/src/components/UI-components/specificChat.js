@@ -1,28 +1,26 @@
-import React,{useEffect,useState} from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import moment from 'moment';
-import io from 'socket.io-client';
-import { baseurl } from '../../core';
+import React from 'react';
 import { GlobalContext } from '../../context/Context';
+
 import { useContext } from 'react';
-const Chat = () => {
+import { useParams } from 'react-router-dom';
+import { baseurl } from '../../core';
+import moment from 'moment';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { io } from 'socket.io-client';
+export const SpecificChat = () => {
     let { state, dispatch } = useContext(GlobalContext);
-    const email= state?.user?.email
+    const email = state?.user?.email
     const { to_email } = useParams()
-    // console.log(email)
-
-
-
-    // const to_email=email;
 
     const [posts, setPosts] = useState([])
-    const [message,setMessage]=useState()
+    console.log(posts)
+    const [message, setMessage] = useState()
     const [isMore, setIsMore] = useState(true)
 
 
     // const Submit = (values, { resetForm }) => {
-        const Submit = () => {
+    const Submit = () => {
 
         // console.log("values")
         let m = moment().format('MMMM Do YYYY')
@@ -31,7 +29,7 @@ const Chat = () => {
             {
                 post: message,
                 time: m,
-                to_email : to_email,
+                to_email: to_email,
             }, {
             withCredentials: true
         })
@@ -42,15 +40,15 @@ const Chat = () => {
             })
     }
     useEffect(() => {
-        
+
         axios.get(`${baseurl}/api/v1/post/${to_email}/${email}/?page=0`,
-        // axios.get(`${baseurl}/api/v1/post?email=asadali5401@gmail.com`,
+            // axios.get(`${baseurl}/api/v1/post?email=asadali5401@gmail.com`,
 
             {
                 withCredentials: true
             })
             .then(response => {
-                console.log("asad",response.data)
+                console.log("asad", response.data)
                 setPosts(response.data)
             })
             .catch(err => alert("Error in getting data"))
@@ -77,30 +75,27 @@ const Chat = () => {
             socket.close();
         };
 
-    
+
     }, []);
 
 
-    return (
-        <>
-        <input type="text" onChange={e=>{setMessage(e.target.value)}}></input>
+    return <div>
+        <input type="text" onChange={e => { setMessage(e.target.value) }}></input>
         <button onClick={Submit}>SUBMIT</button>
         {posts?.map((posts, index) => (
 
-                        <div className="postcard">
-    
-                                
-                                Name :{posts?.name}<br></br>
-                                Time :{posts?.time}<br></br>
-                                Posts :{posts?.post}
-      
-                        </div>
-                    )
-
-                    )}
-        </>
-    )}
-    
+            <div className="postcard">
 
 
-export default Chat;
+                Name :{posts?.post}<br></br>
+                {/* Time :{posts?.time}<br></br>
+                                Posts :{posts?.post}<br></br> */}
+                Email :{posts?.email}<br></br>
+                To Email :{posts?.to_email}<br></br>
+
+            </div>
+        )
+
+        )}
+    </div>;
+};

@@ -481,42 +481,57 @@ app.post("/api/v1/post", (req, res) => {
     });
 })
 
-// app.get("/api/v1/post", (req, res) => {
-//     const page = Number(req.query.page);
-    
-//     Post.find()
-//         .sort({ created: "desc" })
-//         .skip(page)
-//         .limit(2)
-//         .then(admdata => res.json(admdata))
-//         .catch(err => res.status(400).json('Error: ' + err));
-// });
+
 app.get("/api/v1/post/:to_email/:email", (req, res) => {
     console.log("to_email",req.params.to_email)
-    const to_email=req.params.to_email;
+    // const to_email=req.params.to_email;
+    const email1=req.params.to_email;
+
     console.log("email",req.params.email)
-    const email=req.params.email;
-    // const to_email="saima@gmail.com"
-    const page = Number(req.query.page);
-    // console.log("asad",to_email)
-    
-    Post.find({to_email,email})
+    // const email=req.params.email;
+    const email2=req.params.email;
+
+    const page = Number(req.query.page);    
+    Post.find({$or:[{to_email:email1,email:email2}, {email:email1,to_email:email2}]})
+
+    // Post.find({email:{$in:[email1,email2]}})
+    // Post.find({to_email:email1,email:email2})
+
         .sort({ created: "desc" })
         .skip(page)
-        .limit(2)
+        // .limit(2)
+        .then(admdata => res.json(admdata))
+        .catch(err => res.status(400).json('Error: ' + err));
+
+    if(Post.find({to_email:email1,email:email2}) || Post.find({to_email:email2,email:email1})){
+        console.log("a")
+
+    }
+});
+
+app.get("/api/v1/post/:email", (req, res) => {
+    // console.log("to_email",req.params.to_email)
+    // const to_email=req.params.to_email;
+    console.log("email",req.params.email)
+    const email=req.params.email;
+    const page = Number(req.query.page);    
+    Post.find({to_email:email})
+        .sort({ created: "desc" })
+        .skip(page)
+        // .limit(2)
         .then(admdata => res.json(admdata))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
 
-app.get("/api/v1/mypost", (req, res) => {
-    Post
-        .find({ userId: req.body._decoded?._id })
-        .sort({ created: "desc" })
-        .exec((err, data) => {
-            res.send(data);
-        });
-});
+// app.get("/api/v1/mypost", (req, res) => {
+//     Post
+//         .find({ userId: req.body._decoded?._id })
+//         .sort({ created: "desc" })
+//         .exec((err, data) => {
+//             res.send(data);
+//         });
+// });
 
 
 
@@ -529,11 +544,7 @@ app.get("/**", (req, res, next) => {
 })
 
 
-// app.listen(PORT, () => {
-//     console.log(`Example app listening at http://localhost:${PORT}`)
-// })
 
-//Socket
 
 const server = createServer(app);
 
