@@ -12,6 +12,15 @@ export const MyChats = () => {
     let { state, dispatch } = useContext(GlobalContext);
     const email = state?.user?.email
     const [posts, setPosts] = useState([])
+    // const [filter,setFilter]=useState([])
+    // for(let i=0;i<posts.length;i++){
+    //     if(posts[i].email in filter){
+
+    //     }
+    //     else{
+    //         filter.
+    //     }
+    // }
 
 
     useEffect(() => {
@@ -28,18 +37,21 @@ export const MyChats = () => {
             })
             .catch(err => alert("Error in getting data"))
     }, [])
-    return <div>
-        {posts?.map((posts, index) => (
+    return (
+        <div>
+            {posts?.map((posts, index) => (
 
-            <Link to={`/specificChat/${posts?.email}`} className="postcard">
+                <Link to={`/specificChat/${posts?.email}`}>
 
 
-                {posts?.name}<br></br>
-               
+                    {posts?.name}<br></br>
 
-            </Link>
-        )
 
-        )}
-    </div>;
+                </Link>
+            )
+
+            )}
+        </div>
+        // <div></div>
+        );
 };

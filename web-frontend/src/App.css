@@ -1267,103 +1267,128 @@ Link{
 
 
 
-
-
-
-
-/* 
-
-.text{
-  z-index: 1;
-  color: #fff;
-  font-family: "Roboto Mono", monospace;
-  font-size: 40px;
-  font-weight: 170;
-  display: flex;
-  position: relative;
-  top: 40%;
-  left: 90%;
-  transform: translate(-50%, -50%);
-  letter-spacing: 5px;
-  -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 255, 255, 0.2));
+.sent-box{
+  background-color:  rgb(179, 179, 179);
+  padding:30px 30px 10px 30px;
 }
-
-.text span:nth-child(1){
-  color: #4285F4;
-  animation: animText 1s ease-in-out infinite;
+.inp{
+  width:90%;
+  border-radius: 10px;
+  height:50px;
+  font-size: 20px;
 }
-
-.text span:nth-child(2){
-  color: #EA4335;
-  animation: animText 1s ease-in-out infinite;
-  animation-delay: 0.8s;
+.inp:focus{
+  /* border:3px red solid */
 }
+.butt{
+  width:10%;
+  border-radius: 10px;
+  height:50px;
+  font-size: 20px;
+  background-color: lightgreen;
+  color:black;
 
-.text span:nth-child(3){
-  color: #FBBC05;
-  animation: animText 1s ease-in-out infinite;
-  animation-delay: 1.2s;
+
 }
+.butt:hover{
+  color: lightgreen;
+  background-color:black;
 
-.text span:nth-child(4){
-  color: #34A853;
-  animation: animText 1s ease-in-out infinite;
-  animation-delay: 1.6s;
 }
-
-.text span:nth-child(5){
-  color: #34A853;
-  animation: animText 1s ease-in-out infinite;
-  animation-delay: 1.6s;
+.message-box{
+  background-color: rgb(179, 179, 179);
+  padding:30px;
 }
+.my-msg{
+  word-wrap: break-word;
+  text-align: right !important;
+  /* border:2px red solid; */
+  padding-right:3%;
+  padding-left:3%;
 
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin:10px 0 10px 0px;
+  background-color: lightgreen;
+  color:black;
+  border-radius: 10px;
 
-.text span:nth-child(6){
-  color: #34A853;
-  animation: animText 1s ease-in-out infinite;
-  animation-delay: 1.6s;
 }
+.buyer-msg{
+  word-wrap: break-word;
+margin:10px 0 10px 0px;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left:3%;
+padding-right:3%;
+background-color:white ;
+color:black;
+border-radius: 10px;
 
-
-.text span:nth-child(7){
-  color: yellow;
-  animation: animText 1s ease-in-out infinite;
-  animation-delay: 1.6s;
 }
-
-.text span:nth-child(8){
-  color: blue;
-  animation: animText 1s ease-in-out infinite;
-  animation-delay: 1.6s;
+.time{
+  font-size: 11px;
 }
 
 
-@keyframes animText{
-  0%{
-    font-weight: 200;
-  }
-  50%{
-    font-weight: 900;
-  }
-  100%{
-    font-weight: 200;
-  }
-}
 
-.text span:nth-child(5){
-  color: #4285F4;
-  font-weight: 900;
-  animation: animMark 1s ease-in-out infinite;
-}
 
-@keyframes animMark{
-  0%{
-    transform: rotate(30deg);
-  }
-  50%{
-    transform: rotate(0deg);
-  }
-  100%{
-    transform: rotate(30deg);
-  }
+/* @media screen and(max-width: 1000px) {
+
+.inp{
+  width:80% !important;
+  color:red
+
+}
+.butt{
+  width:20% !important;
+  color:red !important
+
+}
 } */
+
+@media screen and (max-width: 1000px) {
+  .inp{
+    width:80% !important;
+    font-size: 18px;
+    height:40px;
+  
+  }
+  .butt{
+    width:20% !important;
+    font-size: 18px;
+    height:40px;
+
+  
+  }
+}
+@media screen and (max-width: 500px) {
+  .inp{
+    width:75% !important;
+    font-size: 16px;
+    height:35px;
+  
+  }
+  .butt{
+    width:25% !important;
+    font-size: 16px;
+    height:35px;
+
+  
+  }
+}
+@media screen and (max-width: 500px) {
+  .inp{
+    width:75% !important;
+    font-size: 14px;
+    height:35px;
+  
+  }
+  .butt{
+    width:25% !important;
+    font-size: 14px;
+    height:35px;
+
+  
+  }
+}

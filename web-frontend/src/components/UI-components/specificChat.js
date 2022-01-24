@@ -80,22 +80,28 @@ export const SpecificChat = () => {
 
 
     return <div>
-        <input type="text" onChange={e => { setMessage(e.target.value) }}></input>
-        <button onClick={Submit}>SUBMIT</button>
-        {posts?.map((posts, index) => (
+        <div className='sent-box'>
 
-            <div className="postcard">
+        <input className='inp' type="text" onChange={e => { setMessage(e.target.value) }}></input>
+        <button className='butt' onClick={Submit}>SUBMIT</button>
+        </div>
+        <div className='message-box'>
+            {posts?.map((posts, index) => (
+
+                <div className={posts?.email == email ? "my-msg" : "buyer-msg"}>
+
+                    <div className='message'>
+                        {posts?.post}
+                    </div>
+                    <div className='time'>
+                        {posts?.time}
+                    </div>
 
 
-                Name :{posts?.post}<br></br>
-                {/* Time :{posts?.time}<br></br>
-                                Posts :{posts?.post}<br></br> */}
-                Email :{posts?.email}<br></br>
-                To Email :{posts?.to_email}<br></br>
+                </div>
+            )
 
-            </div>
-        )
-
-        )}
+            )}
+        </div>
     </div>;
 };

@@ -493,10 +493,6 @@ app.get("/api/v1/post/:to_email/:email", (req, res) => {
 
     const page = Number(req.query.page);    
     Post.find({$or:[{to_email:email1,email:email2}, {email:email1,to_email:email2}]})
-
-    // Post.find({email:{$in:[email1,email2]}})
-    // Post.find({to_email:email1,email:email2})
-
         .sort({ created: "desc" })
         .skip(page)
         // .limit(2)
