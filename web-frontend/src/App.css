@@ -298,6 +298,11 @@ Link{
   color: #51644f;
 }
 
+.container-sm{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #51644f;
+}
+
 
 .content-box{
   padding: 20px;
@@ -1277,9 +1282,9 @@ Link{
   height:50px;
   font-size: 20px;
 }
-.inp:focus{
-  /* border:3px red solid */
-}
+/* .inp:focus{
+  border:3px red solid
+} */
 .butt{
   width:10%;
   border-radius: 10px;

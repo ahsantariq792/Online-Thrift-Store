@@ -62,6 +62,10 @@ function DashNavbar() {
                                 <Link to="/mychats" className="nav-itms">INBOX</Link>
                             </li>
 
+                            <li>
+                                <Link to="/loanform" className="nav-itms">Loanform</Link>
+                            </li>
+
 
                             <li>
                                 <Link to="/" onClick={logout} className="nav-itms" style={{ fontWeight:"600", color: "red", marginLeft: "20%"}}>Logout</Link>

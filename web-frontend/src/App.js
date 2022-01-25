@@ -17,6 +17,8 @@ import PropertiesDetails from './components/UI-components/PropertiesDetails';
 import Chat from './components/UI-components/chat';
 import { MyChats } from './components/UI-components/myChats';
 import { SpecificChat } from './components/UI-components/specificChat';
+import Loanform from './components/Loan/Loanform';
+import Admindashboard from './components/Admin/Admindashboard';
 
 import axios from 'axios';
 import { baseurl } from './core';
@@ -39,6 +41,7 @@ import Safety from './components/FAQ/Safety';
 import Posting from './components/FAQ/Posting';
 import Profilehelp from './components/FAQ/Profilehelp';
 import Legal from './components/FAQ/Legal';
+import Adminlogin from './components/Admin/Adminlogin';
 
 
 function App() {
@@ -105,6 +108,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/adminlogin" component={Adminlogin} />
           <Redirect to="/" />
         </Switch> : null
       }
@@ -184,6 +188,15 @@ function App() {
           </Route> <Route path="/profilehelp">
             <Profilehelp />
           </Route>
+
+          <Route path="/loanform">
+            <Loanform />
+          </Route>
+
+          <Route path="/admindashboard">
+            <Admindashboard />
+          </Route>
+
 
           <Redirect to="/" />
         </Switch>

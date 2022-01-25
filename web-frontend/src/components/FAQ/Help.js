@@ -30,10 +30,10 @@ function Help() {
                         <Link to="/legal" className="faq-a">
 
                             {/* <a className="faq-a" href="Legal and Privacy Information.html"> */}
-                                <div class="content-box help-content">
-                                    <h3 class="help-h3">Legal & Privacy information</h3>
-                                    <p class="help-para"> There is some Legel & Privacy information for our valued customers' ease</p>
-                                </div>
+                            <div class="content-box help-content">
+                                <h3 class="help-h3">Legal & Privacy information</h3>
+                                <p class="help-para"> There is some Legel & Privacy information for our valued customers' ease</p>
+                            </div>
                             {/* </a> */}
                         </Link>
                     </div>
@@ -42,30 +42,30 @@ function Help() {
                         <Link to="/profilehelp" className="faq-a">
 
                             {/* <a className="faq-a" href="Profile.html"> */}
-                                <div class="content-box help-content">
-                                    <h3 class="help-h3">My Account/Profile</h3>
-                                    <p class="help-para">It includes all the important information about Account & Profile creation and modification</p>
-                                </div>
+                            <div class="content-box help-content">
+                                <h3 class="help-h3">My Account/Profile</h3>
+                                <p class="help-para">It includes all the important information about Account & Profile creation and modification</p>
+                            </div>
                             {/* </a> */}
                         </Link>
                     </div>
-                </div>
-            </div>
 
-            <div class="row help-row justify-content-center">
+                    <div class="column-md">
+                        <Link to="/posting" className="faq-a">
 
-                <div class="column-md">
-                    <Link to="/posting" className="faq-a">
-
-                        {/* <a className="faq-a" href="Posting&Managing.html"> */}
+                            {/* <a className="faq-a" href="Posting&Managing.html"> */}
                             <div class="content-box help-content">
                                 <h3 class="help-h3">Posting & Managing Ads</h3>
                                 <p class="help-para">This may help our valued customers as far as posting and managin ads</p>
                             </div>
-                        {/* </a> */}
-                    </Link>
+                            {/* </a> */}
+                        </Link>
+                    </div>
+
                 </div>
             </div>
+
+
         </>
 
 
