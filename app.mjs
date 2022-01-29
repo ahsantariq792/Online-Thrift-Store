@@ -266,6 +266,150 @@ app.get("/api/v1/get_ad_house", (req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+const Loanapplications = mongoose.model('Loanapplications', {
+    description: {
+        type: String,
+        required: true
+    },
+    jobtitle: {
+        type: String,
+        required: true
+    },
+    salary: {
+        type: String,
+        required: true
+    },
+    officeaddress: {
+        type: String,
+        required: true
+    },
+    // name: {
+    //     type: String,
+    //     required: true
+    // },
+    // email: {
+    //     type: String,
+    //     required: true
+    // },
+    // userId: {
+    //     type: String,
+    //     required: true
+    // },
+    sdate: {
+        type: String,
+        required: true
+    },
+    edate: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    imageurl1: {
+        type: String,
+        required: true
+    },
+    imageurl2: {
+        type: String,
+        required: true
+    },
+    imageurl3: {
+        type: String,
+        required: true
+    },
+    imageurl4: {
+        type: String,
+        required: true
+    },
+    imageurl5: {
+        type: String,
+        required: true
+    },
+    imageurl6: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    tname: {
+        type: String,
+        required: true
+    },
+    tcnic: {
+        type: String,
+        required: true
+    },
+    tphone: {
+        type: String,
+        required: true
+    },
+    taddress: {
+        type: String,
+        required: true
+    },
+
+})
+
+
+app.post("/api/v1/loan_apply", (req, res) => {
+    console.log("dgdiks")
+    const { jobtitle, sdate, edate , amount,  description, city, state, address , imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6  } = req.body
+
+    if (!jobtitle || !sdate || !edate  || !amount ||  !description || !city || !state || !address  || !imageurl1 || !imageurl2 || !imageurl3 || !imageurl4 || !imageurl5 || !imageurl6 ) {
+        return (res.status(500).send("plz fill all fields")
+        )
+    } else {
+        // const images = []
+        // images.unshift(imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6,)
+
+        const newLoanapplications = new Loanapplications({
+            // name: req.body._decoded.name,
+            // userId: req.body._decoded._id,
+            // email: req.body._decoded.email,
+            description: req.body.description,
+            jobtitle: req.body.jobtitle,
+            salary: req.body.salary,
+            officeaddress: req.body.officeaddress,
+            sdate: req.body.sdate,
+            edate: req.body.edate,
+            amount: req.body.amount,
+            state: req.body.state,
+            city: req.body.city,
+            address: req.body.address,
+            phone: req.body.phone,
+            tname: req.body.tname,
+            tcnic: req.body.tcnic,
+            taddress: req.body.taddress,
+            tphone: req.body.tphone,
+            imageurl1: req.body.imageurl1,
+            imageurl2: req.body.imageurl2,
+            imageurl3: req.body.imageurl3,
+            imageurl4: req.body.imageurl4,
+            imageurl5: req.body.imageurl5,
+            imageurl6: req.body.imageurl6,
+        });
+
+        newLoanapplications.save().then(() => {
+            console.log("Loan Application uploaded successfully"); res.status(200).send("Loan Application uploaded successfully")
+        }).catch((error) => { console.log(error) })
+    }
+})
 
 
 
@@ -484,95 +628,7 @@ app.post("/api/v1/post", (req, res) => {
 })
 
 
-const Loanapplications = mongoose.model('Loanapplications', {
-    jobtitle: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    sdate: {
-        type: String,
-        required: true
-    },
-    edate: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    imageurl1: {
-        type: String,
-        required: true
-    },
-    imageurl2: {
-        type: String,
-        required: true
-    },
-    amount: {
-        type: String,
-        required: true
-    },
-    city: {
-        type: String,
-        required: true
-    },
-    state: {
-        type: String,
-        required: true
-    },
-    name: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    }
 
-})
-
-
-app.post("/api/v1/loan_apply", (req, res) => {
-    console.log("dgdiks")
-
-    if (!jobtitle || !sdate || !edate  || !amount ||  !description || !city || !state || !address) {
-        return (res.status(500).send("plz fill all fields")
-        )
-    } else {
-        // || !imageurl1 || !imageurl2
-        const images = []
-        images.unshift(imageurl1, imageurl2)
-
-        const newLoanapplications = new Loanapplications({
-            name: req.body._decoded.name,
-            userId: req.body._decoded._id,
-            email: req.body._decoded.email,
-            jobtitle: req.body.jobtitle,
-            description: req.body.description,
-            sdate: req.body.sdate,
-            edate: req.body.edate,
-            amount: req.body.amount,
-            state: req.body.state,
-            city: req.body.city,
-            address: req.body.address,
-            phone: req.body.phone,
-            images: images,
-        });
-
-        newLoanapplications.save().then(() => {
-            console.log("Loan Application uploaded successfully"); res.status(200).send("Loan Application uploaded successfully")
-        }).catch((error) => { console.log(error) })
-    }
-})
 
 
 

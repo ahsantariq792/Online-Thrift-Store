@@ -27,7 +27,7 @@ const validationSchema = yup.object({
 
 
 
-function Adminlogin() {
+function Login() {
 
   // let history = useHistory();
   let { state, dispatch } = useContext(GlobalContext);
@@ -147,4 +147,4 @@ function Adminlogin() {
   );
 }
 
-export default Adminlogin;
+export default Login;
