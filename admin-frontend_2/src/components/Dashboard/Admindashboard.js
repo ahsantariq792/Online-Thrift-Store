@@ -17,27 +17,26 @@ import axios from 'axios';
 
 function Admindashboard() {
 
-    // const [posts, setPosts] = useState([])
-    // console.log("here",posts)
+    const [posts, setPosts] = useState([])
+    console.log("here",posts)
 
-    // const getData=async()=>{
-    //    await axios.get(`${baseurl}/api/v1/get_ad_vehicle`,
-    //         {
-    //             withCredentials: true
-    //         })
-    //         .then(response => {
-    //             console.log(response.data)
-    //             setPosts(()=> response.data)
-    //             // console.log(posts)
-    //         })
-    //         .catch(err => alert("Error in getting data"))
-    // }
+    const getData=async()=>{
+       await axios.get(`${baseurl}/api/v1/loan_apply`,
+            {
+                withCredentials: true
+            })
+            .then(response => {
+                console.log(response.data)
+                setPosts(()=> response.data)
+            })
+            .catch(err => alert("Error in getting data"))
+    }
 
 
-    // useEffect(() => {
-    //     getData()
+    useEffect(() => {
+        getData()
 
-    // }, [])
+    }, [])
 
     return (
         <>
@@ -61,7 +60,7 @@ function Admindashboard() {
                     make="aaaa"
                     condition="aaaa"
                     image="aaaa"
-                    price="aaaa"
+                    price="aaaa" 
 
                 />
             </div>

@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import addphoto from "../../images/add-photo.png"
 import pic from "../../images/pic.jpg"
 import Button from "@mui/material/Button";
-
+import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { TextField } from '@mui/material';
-
+import axios from 'axios';
+import { baseurl } from '../../core';
 import { GlobalContext } from '../../context/Context';
 import { useContext } from 'react';
 
@@ -34,13 +35,6 @@ const validationSchema = yup.object({
         .string('Enter your description')
         .min(30, 'description should be of minimum 30 characters length')
         .required('description is required'),
-
-    // phone: yup
-    //     .string('Enter your phone no.')
-    //     .matches(phoneRegExp, 'Phone number is not valid')
-    //     .min(11, 'Phone should contain 11 digits')
-    //     .max(11, 'Phone should contain 11 digits')
-    //     .required('phone number is required'),
 
     officeaddress: yup
         .string('Enter office address')
@@ -103,6 +97,34 @@ function Loanform() {
     //   let { state, dispatch } = useContext(GlobalContext);
     //   const email= state?.user?.email
 
+
+    const { id } = useParams()
+    //console.log(id)
+
+    const [post, setPosts] = useState([])
+    //console.log("this is ad details", post)
+    const getData = async () => {
+        await axios.get(`${baseurl}/api/v1/get_ad_vehicle/${id}`,
+            {
+                withCredentials: true
+            })
+            .then(response => {
+                //console.log("asad", response.data)
+                setPosts(() => response.data)
+                // //console.log(posts)
+            })
+            .catch(err => alert("Error in getting data"))
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+
+
+
+
+
     const [image1, setImage1] = useState();  //Job Proof
     const [image2, setImage2] = useState();  //NIC Front
     const [image3, setImage3] = useState();  //NIC Back
@@ -129,24 +151,24 @@ function Loanform() {
         uploadTask1.on('state_changed',
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
+                //console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
                     case 'paused':
-                        console.log('Upload is paused');
+                        //console.log('Upload is paused');
                         break;
                     case 'running':
-                        console.log('Upload is running');
+                        //console.log('Upload is running');
                         break;
                 }
             },
             (error) => {
-                console.log("error in uploading image", error)
+                //console.log("error in uploading image", error)
             },
             () => {
                 getDownloadURL(uploadTask1.snapshot.ref).then((downloadURL) => {
-                    console.log('File available at', downloadURL);
+                    //console.log('File available at', downloadURL);
                     setImageurl1(() => downloadURL)
-                    console.log("imageurl", imageurl1)
+                    //console.log("imageurl", imageurl1)
 
                 });
             }
@@ -158,24 +180,24 @@ function Loanform() {
         uploadTask2.on('state_changed',
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
+                //console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
                     case 'paused':
-                        console.log('Upload is paused');
+                        //console.log('Upload is paused');
                         break;
                     case 'running':
-                        console.log('Upload is running');
+                        //console.log('Upload is running');
                         break;
                 }
             },
             (error) => {
-                console.log("error in uploading image", error)
+                //console.log("error in uploading image", error)
             },
             () => {
                 getDownloadURL(uploadTask2.snapshot.ref).then((downloadURL) => {
-                    console.log('File available at', downloadURL);
+                    //console.log('File available at', downloadURL);
                     setImageurl2(() => downloadURL)
-                    console.log("imageurl2", imageurl2)
+                    //console.log("imageurl2", imageurl2)
 
                 });
             }
@@ -188,24 +210,24 @@ function Loanform() {
         uploadTask3.on('state_changed',
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
+                //console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
                     case 'paused':
-                        console.log('Upload is paused');
+                        //console.log('Upload is paused');
                         break;
                     case 'running':
-                        console.log('Upload is running');
+                        //console.log('Upload is running');
                         break;
                 }
             },
             (error) => {
-                console.log("error in uploading image", error)
+                //console.log("error in uploading image", error)
             },
             () => {
                 getDownloadURL(uploadTask3.snapshot.ref).then((downloadURL) => {
-                    console.log('File available at', downloadURL);
+                    //console.log('File available at', downloadURL);
                     setImageurl3(() => downloadURL)
-                    console.log("imageurl3", imageurl3)
+                    //console.log("imageurl3", imageurl3)
 
                 });
             }
@@ -218,24 +240,24 @@ function Loanform() {
         uploadTask4.on('state_changed',
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
+                //console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
                     case 'paused':
-                        console.log('Upload is paused');
+                        //console.log('Upload is paused');
                         break;
                     case 'running':
-                        console.log('Upload is running');
+                        //console.log('Upload is running');
                         break;
                 }
             },
             (error) => {
-                console.log("error in uploading image", error)
+                //console.log("error in uploading image", error)
             },
             () => {
                 getDownloadURL(uploadTask4.snapshot.ref).then((downloadURL) => {
-                    console.log('File available at', downloadURL);
+                    //console.log('File available at', downloadURL);
                     setImageurl4(() => downloadURL)
-                    console.log("imageurl4", imageurl4)
+                    //console.log("imageurl4", imageurl4)
 
                 });
             }
@@ -248,24 +270,24 @@ function Loanform() {
         uploadTask5.on('state_changed',
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
+                //console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
                     case 'paused':
-                        console.log('Upload is paused');
+                        //console.log('Upload is paused');
                         break;
                     case 'running':
-                        console.log('Upload is running');
+                        //console.log('Upload is running');
                         break;
                 }
             },
             (error) => {
-                console.log("error in uploading image", error)
+                //console.log("error in uploading image", error)
             },
             () => {
                 getDownloadURL(uploadTask5.snapshot.ref).then((downloadURL) => {
-                    console.log('File available at', downloadURL);
+                    //console.log('File available at', downloadURL);
                     setImageurl5(() => downloadURL)
-                    console.log("imageurl5", imageurl5)
+                    //console.log("imageurl5", imageurl5)
 
                 });
             }
@@ -277,30 +299,36 @@ function Loanform() {
         uploadTask6.on('state_changed',
         (snapshot) => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
+            //console.log('Upload is ' + progress + '% done');
             switch (snapshot.state) {
                 case 'paused':
-                    console.log('Upload is paused');
+                    //console.log('Upload is paused');
                     break;
                 case 'running':
-                    console.log('Upload is running');
+                    //console.log('Upload is running');
                     break;
             }
         },
         (error) => {
-            console.log("error in uploading image", error)
+            //console.log("error in uploading image", error)
         },
         () => {
             getDownloadURL(uploadTask6.snapshot.ref).then((downloadURL) => {
-                console.log('File available at', downloadURL);
+                //console.log('File available at', downloadURL);
                 setImageurl6(() => downloadURL)
-                console.log("imageurl6", imageurl6)
+                //console.log("imageurl6", imageurl6)
 
             });
         }
     );
 
-
+        const price=post.price;
+        const title=post.title;
+        const make=post.make;
+        const condition=post.condition;
+        const producturl=post.imageurl1;
+        
+        // console.log("fxyjfxxhxh",nam)
         const { description, jobtitle, salary, officeaddress, sdate, edate, amount, city, state, address, tname, tphone, taddress, tcnic } = values;
         console.log("SUBMIT_values", values)
 
@@ -310,7 +338,7 @@ function Loanform() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                description, jobtitle, salary, officeaddress, sdate, edate, amount, city, state, address, tname, tphone, taddress, tcnic, imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6
+                price,title,make,condition,producturl, description, jobtitle, salary, officeaddress, sdate, edate, amount, city, state, address, tname, tphone, taddress, tcnic, imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6
             })
         })
         const data = await res.json()

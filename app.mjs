@@ -267,6 +267,26 @@ app.get("/api/v1/get_ad_house", (req, res) => {
 });
 
 const Loanapplications = mongoose.model('Loanapplications', {
+    price: {
+        type: String,
+        required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    make: {
+        type: String,
+        required: true
+    },
+    condition: {
+        type: String,
+        required: true
+    },
+    producturl: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true
@@ -363,25 +383,33 @@ const Loanapplications = mongoose.model('Loanapplications', {
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        required: true
+    },
+    qrcode: {
+        type: String,
+    },
 
 })
 
 
 app.post("/api/v1/loan_apply", (req, res) => {
-    console.log("dgdiks")
+    console.log(req.body)
     const { jobtitle, sdate, edate , amount,  description, city, state, address , imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6  } = req.body
 
     if (!jobtitle || !sdate || !edate  || !amount ||  !description || !city || !state || !address  || !imageurl1 || !imageurl2 || !imageurl3 || !imageurl4 || !imageurl5 || !imageurl6 ) {
         return (res.status(500).send("plz fill all fields")
         )
     } else {
-        // const images = []
-        // images.unshift(imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6,)
+
 
         const newLoanapplications = new Loanapplications({
-            // name: req.body._decoded.name,
-            // userId: req.body._decoded._id,
-            // email: req.body._decoded.email,
+            price: req.body.price,
+            title: req.body.title,
+            make: req.body.make,
+            condition: req.body.condition,
+            producturl: req.body.producturl,
             description: req.body.description,
             jobtitle: req.body.jobtitle,
             salary: req.body.salary,
@@ -403,6 +431,7 @@ app.post("/api/v1/loan_apply", (req, res) => {
             imageurl4: req.body.imageurl4,
             imageurl5: req.body.imageurl5,
             imageurl6: req.body.imageurl6,
+            status: 'Pending'
         });
 
         newLoanapplications.save().then(() => {
@@ -411,7 +440,33 @@ app.post("/api/v1/loan_apply", (req, res) => {
     }
 })
 
+app.get("/api/v1/loan_apply", (req, res) => {
+    Loanapplications.find()
 
+        .then(admdata => res.json(admdata))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+app.get("/api/v1/loan_apply/:id", (req, res) => {
+
+    const id = req.params.id
+
+    Loanapplications.find({id})
+
+        .then(admdata => res.json(admdata))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+app.put("/api/v1/loan_apply/:id", (req, res) => {
+    console.log("Api hit")
+    const id = req.params.id
+    const { qrcode,status } = req.body;
+
+    Loanapplications.findByIdAndUpdate(id,{qrcode,status})
+
+        .then(response => res.json(response))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 
 
 
@@ -655,6 +710,7 @@ app.get("/api/v1/post/:to_email/:email", (req, res) => {
 
     }
 });
+
 
 app.get("/api/v1/post/:email", (req, res) => {
     // console.log("to_email",req.params.to_email)

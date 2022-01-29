@@ -62,9 +62,9 @@ function DashNavbar() {
                                 <Link to="/mychats" className="nav-itms">INBOX</Link>
                             </li>
 
-                            <li>
+                            {/* <li>
                                 <Link to="/loanform" className="nav-itms">Loanform</Link>
-                            </li>
+                            </li> */}
 
 
                             <li>
