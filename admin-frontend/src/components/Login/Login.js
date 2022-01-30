@@ -3,13 +3,13 @@ import '../../App.css';
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import { TextField } from '@mui/material';
 import axios from 'axios';
 import { baseurl } from '../../core';
 import { GlobalContext } from '../../context/Context';
 import { useContext } from "react";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const validationSchema = yup.object({
   email: yup
@@ -38,7 +38,7 @@ function Login() {
     console.log("values", values)
 
 
-    axios.post(`${baseurl}/api/v1/admin_login`,
+    axios.post(`${baseurl}/api/v1/login`,
       {
         email: values.email,
         password: values.password
@@ -48,16 +48,16 @@ function Login() {
       .then(res => {
         console.log(res.data);
         alert('User Logined')
-        // if (res.data.email) {
-        //   dispatch({
-        //     type: "USER_LOGIN",
-        //     payload: {
-        //       name: res.data.name,
-        //       email: res.data.email,
-        //       _id: res.data._id
-        //     }
-        //   })
-        // }
+        if (res.data.email) {
+          dispatch({
+            type: "USER_LOGIN",
+            payload: {
+              name: res.data.name,
+              email: res.data.email,
+              _id: res.data._id
+            }
+          })
+        }
 
 
       })
@@ -72,8 +72,8 @@ function Login() {
   const formik = useFormik({
     validationSchema: validationSchema,
     initialValues: {
-      email: '',
-      password: '',
+      email: 'ahsantariq792@gmail.com',
+      password: '12345678',
 
     },
     onSubmit: submit
@@ -135,7 +135,6 @@ function Login() {
                 <div className="pb-2">
                   <button type="submit" id="userbtn" className="btn btn-dark w-100 font-weight-bold mt-2">LOGIN</button>
                 </div>
-                <div>Forget Password?</div>
               </form>
 
             </div>

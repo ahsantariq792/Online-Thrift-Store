@@ -5,6 +5,19 @@
 
 }
 
+.loanbtn{
+  padding: 1% 3% !important;
+  font-size: 20px !important;
+  margin: 10% 1% !important;  
+}
+
+.loan_buttons{
+  border-top: 2px solid grey;
+  text-align: center;
+  margin: 3% 25% !important;
+}
+
+
 .right{
   /* border:2px red solid; */
   position: absolute;
@@ -19,6 +32,9 @@
 
 
 }
+
+
+
 .full{
   /* border:2px red solid; */
   position: relative;

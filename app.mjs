@@ -66,6 +66,21 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
+
+
+
+const Branchmanager = new mongoose.model('Branchmanager', {
+    name: String,
+    email: String,
+    password: String,
+    phone: Number,
+    created: { type: Date, default: Date.now },
+
+})
+
+
+
+
 const Vehicle = mongoose.model('Vehicels', {
     title: {
         type: String,
@@ -396,9 +411,9 @@ const Loanapplications = mongoose.model('Loanapplications', {
 
 app.post("/api/v1/loan_apply", (req, res) => {
     console.log(req.body)
-    const { jobtitle, sdate, edate , amount,  description, city, state, address , imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6  } = req.body
+    const { jobtitle, sdate, edate, amount, description, city, state, address, imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6 } = req.body
 
-    if (!jobtitle || !sdate || !edate  || !amount ||  !description || !city || !state || !address  || !imageurl1 || !imageurl2 || !imageurl3 || !imageurl4 || !imageurl5 || !imageurl6 ) {
+    if (!jobtitle || !sdate || !edate || !amount || !description || !city || !state || !address || !imageurl1 || !imageurl2 || !imageurl3 || !imageurl4 || !imageurl5 || !imageurl6) {
         return (res.status(500).send("plz fill all fields")
         )
     } else {
@@ -451,7 +466,7 @@ app.get("/api/v1/loan_apply/:id", (req, res) => {
 
     const id = req.params.id
 
-    Loanapplications.find({id})
+    Loanapplications.find({ id })
 
         .then(admdata => res.json(admdata))
         .catch(err => res.status(400).json('Error: ' + err));
@@ -460,9 +475,9 @@ app.get("/api/v1/loan_apply/:id", (req, res) => {
 app.put("/api/v1/loan_apply/:id", (req, res) => {
     console.log("Api hit")
     const id = req.params.id
-    const { qrcode,status } = req.body;
+    const { qrcode, status } = req.body;
 
-    Loanapplications.findByIdAndUpdate(id,{qrcode,status})
+    Loanapplications.findByIdAndUpdate(id, { qrcode, status })
 
         .then(response => res.json(response))
         .catch(err => res.status(400).json('Error: ' + err));
@@ -477,6 +492,36 @@ app.put("/api/v1/loan_apply/:id", (req, res) => {
 app.get('/api/v1/signup', (req, res) => {
     res.send(users)
 })
+
+app.post('/api/v1/signupmanager', (req, res) => {
+
+    if (!req.body.email || !req.body.password || !req.body.name) {
+        console.log("required field missing");
+        res.status(403).send("required field missing");
+        return;
+    }
+
+    else {
+
+        console.log(req.body)
+
+        stringToHash(req.body.password).then(passwordHash => {
+            console.log("hash: ", passwordHash);
+
+            let newBranchmanager = new Branchmanager({
+                name: req.body.name,
+                email: req.body.email,
+                password: passwordHash,
+                phone: req.body.phone,
+            })
+            newBranchmanager.save(() => {
+                console.log("data saved")
+                res.send('signup success')
+            })
+        })
+    }
+})
+
 
 app.post('/api/v1/signup', (req, res) => {
 
@@ -572,6 +617,66 @@ app.post('/api/v1/login', (req, res) => {
         }
     })
 })
+
+const admin = mongoose.model('admin', {
+    email: String,
+    password: String,
+
+});
+
+
+app.post('/api/v1/admin_login', (req, res) => {
+
+
+    if (!req.body.email || !req.body.password) {
+        console.log("required field missing");
+        res.status(403).send("required field missing");
+        return;
+    }
+
+    console.log(req.body)
+
+    admin.findOne({ email: req.body.email }, (err, user) => {
+
+        if (err) {
+            res.status(500).send("error in getting database")
+        } else {
+            if (user) {
+
+                varifyHash(req.body.password, user.password).then(result => {
+                    if (result) {
+
+                        var token = jwt.sign({
+                            name: user.name,
+                            email: user.email,
+                            _id: user._id,
+                        }, SECRET);
+                        console.log("token created: ", token);
+
+                        res.cookie("token", token, {
+                            httpOnly: true,
+                            maxAge: 3000000
+                        });
+
+                        res.send({
+                            name: user.name,
+                            email: user.email,
+                            _id: user._id,
+                        });
+                    } else {
+                        res.status(401).send("Authentication fail");
+                    }
+                }).catch(e => {
+                    console.log("error: ", e)
+                })
+
+            } else {
+                res.send("user not found");
+            }
+        }
+    })
+})
+
 
 
 

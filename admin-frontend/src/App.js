@@ -1,8 +1,7 @@
 import './App.css';
-import Login from './components/LoginForm';
+import Login from './components/Login/Login';
 import DashNavbar from './components/Navbar/DashNavbar';
 import Splashscreen from './components/Splashscreen';
-import Profile from './components/Profile';
 import Dashboard from './components/Dashboard/Dashboard'
 import LoanDetails from './components/Dashboard/Details';
 
@@ -20,6 +19,7 @@ import {
   Redirect
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Signupmanager from './components/Signup/Signupmanager';
 
 
 
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
 
-    axios.get(`${baseurl}/api/v1/profile`, {
+    axios.get(`${baseurl}/api/v1/signupmanager`, {
       withCredentials: true
     })
       .then((res) => {
@@ -60,55 +60,70 @@ function App() {
 
   return (
     <>
-      {/* {(state?.user?.email) ?
+      {(state?.user?.email) ?
 
         <DashNavbar />
         :
         null
 
-      } */}
+      }
 
 
 
 
-      {/* {(state.user === undefined) ?
+      {(state.user === undefined) ?
         <Switch>
           <Route exact path="/">
             <Splashscreen />
           </Route>
         </Switch>
-        : null} */}
+        : null}
 
-      {/* {(state.user === null) ?
+      {(state.user === null) ?
         <Switch>
-          <Route exact path="/" component={Login} />
+          <Route exact path="/">
+          <Login />
+        </Route>
           <Redirect to="/" />
         </Switch> : null
-      } */}
+      }
 
-      {/* {(state.user) ?
-        <Switch>
-          
-
-          <Route path="/">
-            <Dashboard />
-          </Route>
-
-
-          <Redirect to="/" />
-        </Switch>
-        : null} */}
+      {(state.user) ?
 
       <Switch>
+        
         <Route exact path="/">
           <Dashboard />
-        </Route>  
+        </Route>
 
         <Route exact path="/loan_details/:id">
           <LoanDetails />
-        </Route>  
+        </Route>
 
+        <Route path="/signupmanager">
+          <Signupmanager />
+        </Route>
+
+        <Redirect to="/" />
       </Switch>
+       : null} 
+
+      {/* <Switch>
+        <DashNavbar />  
+
+        <Route exact path="/">
+          <Login />
+        </Route>
+
+        <Route exact path="/dashboard">
+          <Dashboard />
+        </Route>
+
+        <Route exact path="/loan_details/:id">
+          <LoanDetails />
+        </Route>
+
+      </Switch> */}
     </>
   );
 }
