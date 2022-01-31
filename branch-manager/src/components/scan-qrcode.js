@@ -5,7 +5,8 @@ import QrReader from 'react-qr-reader';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { baseurl } from '../core';
-import axios from 'axios'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export const ScanQrcode = () => {
 
@@ -39,23 +40,7 @@ export const ScanQrcode = () => {
             setScanResultFile(result);
         }
     }
-    const checkDetails = async () => {
 
-        console.log(baseurl)
-        console.log(`${baseurl}/api/v1/loan_applyy/${id}`)
-
-        await axios.get(`${baseurl}/api/v1/loan_applyy/${id}`,
-            {
-                withCredentials: true
-            })
-            .then(response => {
-                // console.log("asad", response.data)
-                setPosts(() => response.data)
-                console.log(response.data)
-            })
-            .catch(err => alert("Error in getting data"))
-
-    }
 
 
     return (
@@ -67,7 +52,7 @@ export const ScanQrcode = () => {
                 onError={handleErrorWebCam}
                 onScan={handleScanWebCam}
             />
-            <button onClick={checkDetails}>CHECK DETAILS</button>
+            <Link to={`/dashboard/${id}`}> Check Details</Link>
             <button onClick={onScanFile}>Scan Qr Code</button>
             <QrReader
                 ref={qrRef}
