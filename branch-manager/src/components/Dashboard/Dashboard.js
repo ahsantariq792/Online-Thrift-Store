@@ -8,25 +8,25 @@ import { Link } from 'react-router-dom';
 import Button from "@mui/material/Button";
 import { baseurl } from '../../core';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function Dashboard() {
+    const { id } = useParams()
     let { state, dispatch } = useContext(GlobalContext);
 
     const [posts, setPosts] = useState([])
     console.log("saad", posts)
     const getData = async () => {
-        await axios.get(`${baseurl}/api/v1/loan_apply`,
-            {
-                withCredentials: true
-            })
-            .then(response => {
-                console.log(response.data)
-                setPosts(() => response.data)
-                console.log(posts)
-                // console.log(state?.user?.email)
-
-            })
-            .catch(err => alert("Error in getting data"))
+        await axios.get(`${baseurl}/api/v1/loan_applyy/${id}`,
+        {
+            withCredentials: true
+        })
+        .then(response => {
+            // console.log("asad", response.data)
+            setPosts(() => response.data)
+            console.log(response.data)
+        })
+        .catch(err => alert("Error in getting data"))
 
     }
 
