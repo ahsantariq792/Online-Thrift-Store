@@ -12,7 +12,7 @@ const MyQrCode = () => {
     const [post, setPosts] = useState([])
     console.log("Loan Details", post)
     const getData = async () => {
-        await axios.get(`${baseurl}/api/v1/loan_apply/${email}`,
+        await axios.get(`${baseurl}/api/v2/loan_apply/${email}`,
             {
                 withCredentials: true
             })
