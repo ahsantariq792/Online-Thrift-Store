@@ -6,12 +6,8 @@ import { baseurl } from '../../core';
 import axios from 'axios';
 import { Button } from '@mui/material';
 import QRCode from 'qrcode';
-// var PDFDocument = require('pdfkit');
-// var fs = require('fs');
 import { jsPDF } from "jspdf";
-// const nodemailer = require("nodemailer");
 import { Mailer } from 'nodemailer-react'
-// var contents = fs.readFileSync("sliderImages", 'utf8');
 
 
 export default function LoanDetails(props) {
@@ -29,15 +25,21 @@ export default function LoanDetails(props) {
                 withCredentials: true
             })
             .then(response => {
-                // console.log("asad", response.data)
+                console.log("asad", response.data)
                 setPosts(() => response.data)
-                // console.log(posts )
+                console.log(posts)
             })
             .catch(err => alert("Error in getting data"))
     }
 
+    useEffect(() => {
+        getData()
+    }, [])
+
+
     const update = async () => {
-        await axios.put(`${baseurl}/api/v1/loan_apply/${id}`,
+        console.log(posts.email)
+        await axios.put(`${baseurl}/api/v1/loan_apply/${id}/${posts.email}`,
             {
                 qrcode: imageUrl,
                 status: "Approved"
@@ -49,6 +51,7 @@ export default function LoanDetails(props) {
         )
             .then((response) => {
                 console.log("qrcode accepetd")
+                
             })
             .catch((error) => {
                 console.log("error", error)
@@ -56,7 +59,7 @@ export default function LoanDetails(props) {
 
     }
 
-
+   
 
 
     async function Accept() {
@@ -74,21 +77,23 @@ export default function LoanDetails(props) {
     }
     async function Reject() {
 
-        await axios.put(`${baseurl}/api/v1/loan_apply/${id}`,
-        {
-            status: "Rejected"
+        await axios.put(`${baseurl}/api/v1/loan_apply/${id}/${posts.email}`,
+            {
+                status: "Rejected",
+                qrcode: ''
 
-        },
-        {
-            withCredentials: true
-        }
-    )
-        .then((response) => {
-            console.log("qrcode rejected")
-        })
-        .catch((error) => {
-            console.log("error", error)
-        })
+
+            },
+            {
+                withCredentials: true
+            }
+        )
+            .then((response) => {
+                console.log("qrcode rejected")
+            })
+            .catch((error) => {
+                console.log("error", error)
+            })
 
     }
 
@@ -97,14 +102,12 @@ export default function LoanDetails(props) {
     //     console.log("imageUrl", imageUrl)
     //     doc.addImage(imageUrl, 55, 40, 100, 100);
     //     doc.text(`Congratulations User`, 70, 150)
-    //     doc.text(`Your Loan Request has been approved against the ${posts[0]?.title}`, 40, 160)
+    //     doc.text(`Your Loan Request has been approved against the ${posts?.title}`, 40, 160)
     //     doc.save(`${id}.pdf`);
     // }
 
 
-    useEffect(() => {
-        getData()
-    }, [])
+
 
     return (
 
@@ -114,17 +117,17 @@ export default function LoanDetails(props) {
             <div className="accordion-body">
                 <ul className="ul">
 
-                    <li className="full"><span className="left">JOB</span><span className="right"> {posts[0]?.jobtitle}</span>
+                    <li className="full"><span className="left">JOB</span><span className="right"> {posts?.jobtitle}</span>
                     </li>
-                    <li className="full"><span className="left">SALARY</span><span className="right">{posts[0]?.salary}</span>
+                    <li className="full"><span className="left">SALARY</span><span className="right">{posts?.salary}</span>
                     </li>
-                    <li className="full"><span className="left">STATE</span><span className="right"> {posts[0]?.state}</span>
+                    <li className="full"><span className="left">STATE</span><span className="right"> {posts?.state}</span>
                     </li>
-                    <li className="full"><span className="left">CITY</span><span className="right"> {posts[0]?.city}</span>
+                    <li className="full"><span className="left">CITY</span><span className="right"> {posts?.city}</span>
                     </li>
-                    <li className="full"><span className="left">RESIDENTIAL ADDRESS</span><span className="right"> {posts[0]?.address}</span>
+                    <li className="full"><span className="left">RESIDENTIAL ADDRESS</span><span className="right"> {posts?.address}</span>
                     </li>
-                    <li className="full"><span className="left">OFFICE ADDRESS</span><span className="right"> {posts[0]?.officeaddress}</span>
+                    <li className="full"><span className="left">OFFICE ADDRESS</span><span className="right"> {posts?.officeaddress}</span>
                     </li>
                 </ul>
             </div>
@@ -132,14 +135,14 @@ export default function LoanDetails(props) {
 
             <h1 className="text-center py-5">Job Proof</h1>
             <ul className="ul" style={{ textAlign: "center" }}>
-                <img style={{ marginBottom: "5%", marginTop: "2%", height: "80%", width: "60%" }} src={posts[0]?.imageurl1} />
+                <img style={{ marginBottom: "5%", marginTop: "2%", height: "80%", width: "60%" }} src={posts?.imageurl1} />
             </ul>
 
 
 
             <h1 className="text-center py-5">User Tax Certicate</h1>
             <ul className="ul text-center">
-                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts[0]?.imageurl4} />
+                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts?.imageurl4} />
             </ul>
 
             <h1 className="text-center py-5">User Nic DETAILS</h1>
@@ -147,10 +150,10 @@ export default function LoanDetails(props) {
 
                 <h4 style={{ color: "black" }}>NIC Front
                 </h4>
-                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts[0]?.imageurl3} />
+                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts?.imageurl3} />
 
                 <h4 style={{ color: "black" }}>NIC Back</h4>
-                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts[0]?.imageurl3} />
+                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts?.imageurl3} />
 
             </ul>
 
@@ -164,19 +167,19 @@ export default function LoanDetails(props) {
 
             <div className="accordion-body">
                 <ul className="ul">
-                    <li className="full"><span className="left">TITLE</span><span className="right">{posts[0]?.title}</span>
+                    <li className="full"><span className="left">TITLE</span><span className="right">{posts?.title}</span>
                     </li>
-                    <li className="full"><span className="left">MAKE</span><span className="right"> {posts[0]?.make}</span>
+                    <li className="full"><span className="left">MAKE</span><span className="right"> {posts?.make}</span>
                     </li>
-                    <li className="full"><span className="left">PRICE</span><span className="right"> {posts[0]?.price}</span>
+                    <li className="full"><span className="left">PRICE</span><span className="right"> {posts?.price}</span>
                     </li>
-                    <li className="full"><span className="left">CONDITION</span> <span className="right"> {posts[0]?.condition}</span>
+                    <li className="full"><span className="left">CONDITION</span> <span className="right"> {posts?.condition}</span>
                     </li>
                 </ul>
             </div>
 
             <h1 className="text-center py-5">Product Images</h1>
-            <img style={{ height: "80%", width: "80%", margin: "8% 10%" }} src={posts[0]?.producturl} ></img>
+            <img style={{ height: "80%", width: "80%", margin: "8% 10%" }} src={posts?.producturl} ></img>
 
 
 
@@ -184,11 +187,11 @@ export default function LoanDetails(props) {
 
             <div className="accordion-body">
                 <ul className="ul">
-                    <li className="full"><span className="left">AMOUNT</span><span className="right">{posts[0]?.amount}</span>
+                    <li className="full"><span className="left">AMOUNT</span><span className="right">{posts?.amount}</span>
                     </li>
-                    <li className="full"><span className="left">STARTING DATE</span><span className="right"> {posts[0]?.sdate}</span>
+                    <li className="full"><span className="left">STARTING DATE</span><span className="right"> {posts?.sdate}</span>
                     </li>
-                    <li className="full"><span className="left">ENDING DATE</span> <span className="right"> {posts[0]?.edate}</span>
+                    <li className="full"><span className="left">ENDING DATE</span> <span className="right"> {posts?.edate}</span>
                     </li>
                 </ul>
             </div>
@@ -200,13 +203,13 @@ export default function LoanDetails(props) {
             <div className="accordion-body">
                 <ul className="ul">
 
-                    <li className="full"><span className="left">NAME</span><span className="right"> {posts[0]?.tname}</span>
+                    <li className="full"><span className="left">NAME</span><span className="right"> {posts?.tname}</span>
                     </li>
-                    <li className="full"><span className="left">CNIC</span><span className="right">{posts[0]?.tcnic}</span>
+                    <li className="full"><span className="left">CNIC</span><span className="right">{posts?.tcnic}</span>
                     </li>
-                    <li className="full"><span className="left">PHONE NUMBER</span><span className="right"> {posts[0]?.tphone}</span>
+                    <li className="full"><span className="left">PHONE NUMBER</span><span className="right"> {posts?.tphone}</span>
                     </li>
-                    <li className="full"><span className="left">RESIDENTIAL ADDRESS</span><span className="right"> {posts[0]?.taddress}</span>
+                    <li className="full"><span className="left">RESIDENTIAL ADDRESS</span><span className="right"> {posts?.taddress}</span>
                     </li>
                 </ul>
             </div>
@@ -215,10 +218,10 @@ export default function LoanDetails(props) {
             <ul className="ul text-center">
 
                 <h4 style={{ color: "black" }}>NIC Front</h4>
-                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts[0]?.imageurl5} />
+                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts?.imageurl5} />
 
                 <h4 style={{ color: "black" }}>NIC Back</h4>
-                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts[0]?.imageurl6} />
+                <img style={{ marginBottom: "5%", marginTop: "2%", height: "260px" }} src={posts?.imageurl6} />
 
             </ul>
 
@@ -228,7 +231,7 @@ export default function LoanDetails(props) {
 
             <div className="accordion-body">
                 <ul className="ul text-center">
-                    <p style={{ color: "black", width: "60%" }}>{posts[0]?.description}</p>
+                    <p style={{ color: "black", width: "60%" }}>{posts?.description}</p>
                 </ul>
             </div>
 
