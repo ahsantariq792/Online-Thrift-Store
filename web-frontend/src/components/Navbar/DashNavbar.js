@@ -38,6 +38,7 @@ function DashNavbar() {
                             <li>
                                 <Link to="/" className="nav-itms">Profile</Link>
                             </li>
+                            
 
                             <li>
                                 <Link to="/dashboard" className="nav-itms">Dashboard</Link>
@@ -62,9 +63,9 @@ function DashNavbar() {
                                 <Link to="/mychats" className="nav-itms">INBOX</Link>
                             </li>
 
-                            {/* <li>
-                                <Link to="/loanform" className="nav-itms">Loanform</Link>
-                            </li> */}
+                            <li>
+                                <Link to="/my-qrcode" className="nav-itms">My Applications</Link>
+                            </li>
 
 
                             <li>

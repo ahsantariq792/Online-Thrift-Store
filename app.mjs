@@ -23,7 +23,7 @@ const app = express()
 // app.use(cors(["localhost:5000", "localhost:3000"]))
 
 app.use(cors({
-    origin: ["http://localhost:3000", "http://localhost:5000"],
+    origin: ["http://localhost:3000","http://localhost:3001","http://localhost:3002", "http://localhost:5000"],
     credentials: true
 }))
 
@@ -322,10 +322,10 @@ const Loanapplications = mongoose.model('Loanapplications', {
     //     type: String,
     //     required: true
     // },
-    // email: {
-    //     type: String,
-    //     required: true
-    // },
+    email: {
+        type: String,
+        required: true
+    },
     // userId: {
     //     type: String,
     //     required: true
@@ -420,6 +420,7 @@ app.post("/api/v1/loan_apply", (req, res) => {
 
 
         const newLoanapplications = new Loanapplications({
+            email:req.body.email,
             price: req.body.price,
             title: req.body.title,
             make: req.body.make,
@@ -455,6 +456,15 @@ app.post("/api/v1/loan_apply", (req, res) => {
     }
 })
 
+app.get("/api/v1/loan_apply/:email", (req, res) => {
+    console.log("api hit")
+    const email = req.params.email
+    Loanapplications.findOne({email})
+
+        .then(admdata => res.json(admdata))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 app.get("/api/v1/loan_apply", (req, res) => {
     Loanapplications.find()
 
@@ -462,8 +472,8 @@ app.get("/api/v1/loan_apply", (req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-app.get("/api/v1/loan_apply/:id", (req, res) => {
-
+app.get("/api/v1/loan_applyy/:id", (req, res) => {
+console.log("app details")
     const id = req.params.id
 
     Loanapplications.find({ id })

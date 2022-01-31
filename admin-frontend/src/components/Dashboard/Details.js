@@ -48,7 +48,7 @@ export default function LoanDetails(props) {
             }
         )
             .then((response) => {
-                console.log("qrcode")
+                console.log("qrcode accepetd")
             })
             .catch((error) => {
                 console.log("error", error)
@@ -72,15 +72,34 @@ export default function LoanDetails(props) {
         await update()
 
     }
+    async function Reject() {
 
-    function sendQR() {
-        const doc = new jsPDF();
-        console.log("imageUrl", imageUrl)
-        doc.addImage(imageUrl, 55, 40, 100, 100);
-        doc.text(`Congratulations User`, 70, 150)
-        doc.text(`Your Loan Request has been approved against the ${posts[0]?.title}`, 40, 160)
-        doc.save(`${id}.pdf`);
+        await axios.put(`${baseurl}/api/v1/loan_apply/${id}`,
+        {
+            status: "Rejected"
+
+        },
+        {
+            withCredentials: true
+        }
+    )
+        .then((response) => {
+            console.log("qrcode rejected")
+        })
+        .catch((error) => {
+            console.log("error", error)
+        })
+
     }
+
+    // function sendQR() {
+    //     const doc = new jsPDF();
+    //     console.log("imageUrl", imageUrl)
+    //     doc.addImage(imageUrl, 55, 40, 100, 100);
+    //     doc.text(`Congratulations User`, 70, 150)
+    //     doc.text(`Your Loan Request has been approved against the ${posts[0]?.title}`, 40, 160)
+    //     doc.save(`${id}.pdf`);
+    // }
 
 
     useEffect(() => {
@@ -215,8 +234,8 @@ export default function LoanDetails(props) {
 
             <div className='loan_buttons py-05'>
                 <Button onClick={Accept} variant="contained" className="loanbtn" color="success">Accept</Button>
-                <Button variant="contained" className="loanbtn" color="error">Reject</Button>
-                <Button onClick={sendQR} variant="contained" className="loanbtn" color="primary">Send QR code</Button>
+                <Button onClick={Reject} variant="contained" className="loanbtn" color="error">Reject</Button>
+                {/* <Button onClick={sendQR} variant="contained" className="loanbtn" color="primary">Send QR code</Button> */}
             </div>
         </div>
 

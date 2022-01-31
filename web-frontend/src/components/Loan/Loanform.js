@@ -94,8 +94,9 @@ const validationSchema = yup.object({
 
 
 function Loanform() {
-    //   let { state, dispatch } = useContext(GlobalContext);
-    //   const email= state?.user?.email
+      let { state, dispatch } = useContext(GlobalContext);
+      const email= state?.user?.email
+      console.log(email)
 
 
     const { id } = useParams()
@@ -338,7 +339,7 @@ function Loanform() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                price,title,make,condition,producturl, description, jobtitle, salary, officeaddress, sdate, edate, amount, city, state, address, tname, tphone, taddress, tcnic, imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6
+               email,price,title,make,condition,producturl, description, jobtitle, salary, officeaddress, sdate, edate, amount, city, state, address, tname, tphone, taddress, tcnic, imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6
             })
         })
         const data = await res.json()

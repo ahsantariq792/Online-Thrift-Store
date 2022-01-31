@@ -18,6 +18,7 @@ import Chat from './components/UI-components/chat';
 import { MyChats } from './components/UI-components/myChats';
 import { SpecificChat } from './components/UI-components/specificChat';
 import Loanform from './components/Loan/Loanform';
+import MyQrCode from './components/UI-components/myqrcode';
 // import Admindashboard from './components/Admin/Admindashboard';
 
 import axios from 'axios';
@@ -117,6 +118,10 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Profile />
+          </Route>
+
+          <Route exact path="/my-qrcode">
+            <MyQrCode />
           </Route>
 
           <Route path="/dashboard">
