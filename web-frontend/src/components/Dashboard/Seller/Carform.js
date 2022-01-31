@@ -76,9 +76,9 @@ const validationSchema = yup.object({
 
 function App() {
   let { state, dispatch } = useContext(GlobalContext);
-  const email= state?.user?.email
+  const email = state?.user?.email
   // console.log("ahsan",email)
-// const email="ahmas@gmail.com"
+  // const email="ahmas@gmail.com"
   const [image1, setImage1] = useState();
   const [image2, setImage2] = useState();
   const [image3, setImage3] = useState();
@@ -89,109 +89,109 @@ function App() {
 
 
 
- 
+
 
 
   const submit = async (values) => {
 
 
     // const handleChange1 = async (e) => {
-      // setImage1(e.target.files[0])
-      const storageRef1 = ref(storage, `images/vehicle_image/${image1.name}`);
-      const uploadTask1 = uploadBytesResumable(storageRef1, image1);
-  
-      uploadTask1.on('state_changed',
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case 'paused':
-              console.log('Upload is paused');
-              break;
-            case 'running':
-              console.log('Upload is running');
-              break;
-          }
-        },
-        (error) => {
-          console.log("error in uploading image", error)
-        },
-        () => {
-          getDownloadURL(uploadTask1.snapshot.ref).then((downloadURL) => {
-            console.log('File available at', downloadURL);
-            setImageurl1(() => downloadURL)
-            console.log("imageurl", imageurl1)
-  
-          });
+    // setImage1(e.target.files[0])
+    const storageRef1 = ref(storage, `images/vehicle_image/${image1.name}`);
+    const uploadTask1 = uploadBytesResumable(storageRef1, image1);
+
+    uploadTask1.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
         }
-      );
+      },
+      (error) => {
+        console.log("error in uploading image", error)
+      },
+      () => {
+        getDownloadURL(uploadTask1.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          setImageurl1(() => downloadURL)
+          console.log("imageurl", imageurl1)
+
+        });
+      }
+    );
     // }
     // const handleChange2 = async (e) => {
-      // setImage2(e.target.files[0])
-  
-      const storageRef2 = ref(storage, `images/vehicle_image/${image2.name}`);
-      const uploadTask2 = uploadBytesResumable(storageRef2, image2);
-  
-      uploadTask2.on('state_changed',
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case 'paused':
-              console.log('Upload is paused');
-              break;
-            case 'running':
-              console.log('Upload is running');
-              break;
-          }
-        },
-        (error) => {
-          console.log("error in uploading image", error)
-        },
-        () => {
-          getDownloadURL(uploadTask2.snapshot.ref).then((downloadURL) => {
-            console.log('File available at', downloadURL);
-            setImageurl2(() => downloadURL)
-            console.log("imageur2", imageurl2)
-  
-          });
+    // setImage2(e.target.files[0])
+
+    const storageRef2 = ref(storage, `images/vehicle_image/${image2.name}`);
+    const uploadTask2 = uploadBytesResumable(storageRef2, image2);
+
+    uploadTask2.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
         }
-      );
+      },
+      (error) => {
+        console.log("error in uploading image", error)
+      },
+      () => {
+        getDownloadURL(uploadTask2.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          setImageurl2(() => downloadURL)
+          console.log("imageur2", imageurl2)
+
+        });
+      }
+    );
     // }
-  
+
     // const handleChange3 = async (e) => {
-      // setImage3(e.target.files[0])
-      const storageRef3 = ref(storage, `images/vehicle_image/${image3.name}`);
-      const uploadTask3 = uploadBytesResumable(storageRef3, image3);
-  
-      uploadTask3.on('state_changed',
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case 'paused':
-              console.log('Upload is paused');
-              break;
-            case 'running':
-              console.log('Upload is running');
-              break;
-          }
-        },
-        (error) => {
-          console.log("error in uploading image", error)
-        },
-        () => {
-          getDownloadURL(uploadTask3.snapshot.ref).then((downloadURL) => {
-            console.log('File available at', downloadURL);
-            setImageurl3(() => downloadURL)
-            console.log("imageurl3", imageurl3)
-  
-          });
+    // setImage3(e.target.files[0])
+    const storageRef3 = ref(storage, `images/vehicle_image/${image3.name}`);
+    const uploadTask3 = uploadBytesResumable(storageRef3, image3);
+
+    uploadTask3.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
         }
-      );
-  
+      },
+      (error) => {
+        console.log("error in uploading image", error)
+      },
+      () => {
+        getDownloadURL(uploadTask3.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          setImageurl3(() => downloadURL)
+          console.log("imageurl3", imageurl3)
+
+        });
+      }
+    );
+
     // }
-  
+
 
     const { title, make, year, fueltype, kms, registeredarea, condition, city, state, description, price, name, phone } = values;
     console.log("SUBMIT_values", values)
@@ -202,7 +202,7 @@ function App() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-      email,  title, make, year, kms, registeredarea, condition, city, state, description, price, name, phone, fueltype, imageurl1, imageurl2, imageurl3,
+        email, title, make, year, kms, registeredarea, condition, city, state, description, price, name, phone, fueltype, imageurl1, imageurl2, imageurl3,
       })
     })
     const data = await res.json()

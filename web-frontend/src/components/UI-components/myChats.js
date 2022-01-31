@@ -12,27 +12,30 @@ export const MyChats = () => {
     let { state, dispatch } = useContext(GlobalContext);
     const email = state?.user?.email
     const [posts, setPosts] = useState([])
-    // const [filter,setFilter]=useState([])
-    // for(let i=0;i<posts.length;i++){
-    //     if(posts[i].email in filter){
+    
+    // for (let i = 0; i < posts.length; i++) {
+    //     var c=0
+    //     for (let j = 0; j < posts.length; j++) {
 
-    //     }
-    //     else{
-    //         filter.
+    //         if (posts[i].email == posts[j].email) {
+    //             c+=1
+    //             if(c==2){
+    //                 posts.splice(j,1)
+    //             }
+    //         }
     //     }
     // }
-
+    console.log(posts)
 
     useEffect(() => {
 
         axios.get(`${baseurl}/api/v1/post/${email}/?page=0`,
-            // axios.get(`${baseurl}/api/v1/post?email=asadali5401@gmail.com`,
 
             {
                 withCredentials: true
             })
             .then(response => {
-                console.log("asad", response.data)
+                // console.log("asad", response.data)
                 setPosts(response.data)
             })
             .catch(err => alert("Error in getting data"))
@@ -52,6 +55,5 @@ export const MyChats = () => {
 
             )}
         </div>
-        // <div></div>
-        );
+    );
 };
