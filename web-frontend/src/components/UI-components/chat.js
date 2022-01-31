@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import moment from 'moment';
@@ -8,7 +8,7 @@ import { GlobalContext } from '../../context/Context';
 import { useContext } from 'react';
 const Chat = () => {
     let { state, dispatch } = useContext(GlobalContext);
-    const email= state?.user?.email
+    const email = state?.user?.email
     const { to_email } = useParams()
     // console.log(email)
 
@@ -17,12 +17,12 @@ const Chat = () => {
     // const to_email=email;
 
     const [posts, setPosts] = useState([])
-    const [message,setMessage]=useState()
+    const [message, setMessage] = useState()
     const [isMore, setIsMore] = useState(true)
 
 
     // const Submit = (values, { resetForm }) => {
-        const Submit = () => {
+    const Submit = () => {
 
         // console.log("values")
         let m = moment().format('MMMM Do YYYY')
@@ -31,7 +31,7 @@ const Chat = () => {
             {
                 post: message,
                 time: m,
-                to_email : to_email,
+                to_email: to_email,
             }, {
             withCredentials: true
         })
@@ -42,15 +42,15 @@ const Chat = () => {
             })
     }
     useEffect(() => {
-        
+
         axios.get(`${baseurl}/api/v1/post/${to_email}/${email}/?page=0`,
-        // axios.get(`${baseurl}/api/v1/post?email=asadali5401@gmail.com`,
+            // axios.get(`${baseurl}/api/v1/post?email=asadali5401@gmail.com`,
 
             {
                 withCredentials: true
             })
             .then(response => {
-                console.log("asad",response.data)
+                console.log("asad", response.data)
                 setPosts(response.data)
             })
             .catch(err => alert("Error in getting data"))
@@ -77,30 +77,38 @@ const Chat = () => {
             socket.close();
         };
 
-    
+
     }, []);
 
 
     return (
         <>
-        <input type="text" onChange={e=>{setMessage(e.target.value)}}></input>
-        <button onClick={Submit}>SUBMIT</button>
-        {posts?.map((posts, index) => (
+            <div className='sent-box'>
+                <input className='inp' type="text" onChange={e => { setMessage(e.target.value) }}></input>
+                <button className='butt' onClick={Submit}>SUBMIT</button>
+            </div>
+            <div className='message-box'>
+                {posts?.map((posts, index) => (
+                    <div className={posts?.email == email ? "my-msg" : "buyer-msg"}>
 
-                        <div className="postcard">
-    
-                                
-                                Name :{posts?.name}<br></br>
-                                Time :{posts?.time}<br></br>
-                                Posts :{posts?.post}
-      
+
+                        <div className='message'>
+                            {posts?.post}
                         </div>
-                    )
+                        <div className='time'>
+                            {posts?.time}
+                        </div>
 
-                    )}
+                     
+                    </div>
+                )
+
+                )}
+            </div>
         </>
-    )}
-    
+    )
+}
+
 
 
 export default Chat;
