@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { GlobalContext } from '../context/Context';
+import { useContext } from "react";
 import QrReader from 'react-qr-reader';
 import { useState } from 'react';
 import { useRef } from 'react';
@@ -6,6 +8,10 @@ import { baseurl } from '../core';
 import axios from 'axios'
 
 export const ScanQrcode = () => {
+
+    let { state, dispatch } = useContext(GlobalContext);
+
+
     const [id, setScanResultFile] = useState('');
     const qrRef = useRef(null);
     const [posts, setPosts] = useState([])
@@ -33,28 +39,28 @@ export const ScanQrcode = () => {
             setScanResultFile(result);
         }
     }
-    const checkDetails=async ()=>{
-    
-console.log(baseurl)
-console.log(`${baseurl}/api/v1/loan_applyy/${id}`)
-  
-            await axios.get(`${baseurl}/api/v1/loan_applyy/${id}`,
-                {
-                    withCredentials: true
-                })
-                .then(response => {
-                    // console.log("asad", response.data)
-                    setPosts(() => response.data)
-                    console.log(response.data )
-                })
-                .catch(err => alert("Error in getting data"))
-        
+    const checkDetails = async () => {
+
+        console.log(baseurl)
+        console.log(`${baseurl}/api/v1/loan_applyy/${id}`)
+
+        await axios.get(`${baseurl}/api/v1/loan_applyy/${id}`,
+            {
+                withCredentials: true
+            })
+            .then(response => {
+                // console.log("asad", response.data)
+                setPosts(() => response.data)
+                console.log(response.data)
+            })
+            .catch(err => alert("Error in getting data"))
+
     }
-    
+
 
     return (
         <div>
-
+            <h1>hi {state?.user?.email}</h1>
             <QrReader
                 delay={300}
                 style={{ width: '100%' }}

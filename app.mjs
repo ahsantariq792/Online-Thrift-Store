@@ -23,7 +23,7 @@ const app = express()
 // app.use(cors(["localhost:5000", "localhost:3000"]))
 
 app.use(cors({
-    origin: ["http://localhost:3000","http://localhost:3001","http://localhost:3002", "http://localhost:5000"],
+    origin: ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002", "http://localhost:5000"],
     credentials: true
 }))
 
@@ -420,7 +420,7 @@ app.post("/api/v1/loan_apply", (req, res) => {
 
 
         const newLoanapplications = new Loanapplications({
-            email:req.body.email,
+            email: req.body.email,
             price: req.body.price,
             title: req.body.title,
             make: req.body.make,
@@ -459,7 +459,7 @@ app.post("/api/v1/loan_apply", (req, res) => {
 app.get("/api/v1/loan_apply/:email", (req, res) => {
     console.log("api hit")
     const email = req.params.email
-    Loanapplications.findOne({email})
+    Loanapplications.findOne({ email })
 
         .then(admdata => res.json(admdata))
         .catch(err => res.status(400).json('Error: ' + err));
@@ -473,7 +473,7 @@ app.get("/api/v1/loan_apply", (req, res) => {
 });
 
 app.get("/api/v1/loan_applyy/:id", (req, res) => {
-console.log("app details")
+    console.log("app details")
     const id = req.params.id
 
     Loanapplications.find({ id })
@@ -627,6 +627,68 @@ app.post('/api/v1/login', (req, res) => {
         }
     })
 })
+
+
+app.post('/api/v1/login_manager', (req, res) => {
+
+
+    if (!req.body.email || !req.body.password) {
+        console.log("required field missing");
+        res.status(403).send("required field missing");
+        return;
+    }
+
+    console.log(req.body)
+
+    Branchmanager.findOne({ email: req.body.email }, (err, user) => {
+
+        if (err) {
+            res.status(500).send("error in getting database")
+        } else {
+            if (user) {
+
+                varifyHash(req.body.password, user.password).then(result => {
+                    if (result) {
+
+                        var token = jwt.sign({
+                            name: user.name,
+                            email: user.email,
+                            _id: user._id,
+                        }, SECRET);
+                        console.log("token created: ", token);
+
+                        res.cookie("token", token, {
+                            httpOnly: true,
+                            maxAge: 3000000
+                        });
+
+                        res.send({
+                            name: user.name,
+                            email: user.email,
+                            _id: user._id,
+                        });
+                    } else {
+                        res.status(401).send("Authentication fail");
+                    }
+                }).catch(e => {
+                    console.log("error: ", e)
+                })
+
+            } else {
+                res.send("user not found");
+            }
+        }
+    })
+})
+
+
+
+
+
+
+
+
+
 
 const admin = mongoose.model('admin', {
     email: String,

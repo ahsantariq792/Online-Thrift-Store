@@ -38,7 +38,7 @@ function Login() {
     console.log("values", values)
 
 
-    axios.post(`${baseurl}/api/v1/login`,
+    axios.post(`${baseurl}/api/v1/login_manager`,
       {
         email: values.email,
         password: values.password
@@ -72,7 +72,7 @@ function Login() {
   const formik = useFormik({
     validationSchema: validationSchema,
     initialValues: {
-      email: 'ahsantariq792@gmail.com',
+      email: 'anwar@gmail.com',
       password: '12345678',
 
     },
@@ -87,8 +87,8 @@ function Login() {
 
         <div className="row m-5 no-gutters shadow-lg">
           <div className="col-md-6 d-none  bg-light d-md-block">
-            <div style={{ fontFamily: "Impact, Haettenschweiler" }}>
-              <h1 className="m-5"><center>THRIFT STORE ADMIN</center></h1>
+            <div style={{ fontFamily: "Impact, Haettenschweiler" }}>    
+              <h1 className="m-5"><center>Branch Manager</center></h1>
             </div><br /><br />
             <div className="mx-2" style={{ color: "grey", textAlign: "center" }}>
               {/* <p className="para1"><center>Welcome Admin! <br/> Use Your Credentials to login the system</center></p> */}
@@ -98,7 +98,7 @@ function Login() {
             </div>
           </div>
           <div className="col-md-6  p-5" style={{ backgroundColor: "rgba(128, 128, 128, 0.274)" }}>
-            <h2 className="pb-4" style={{ fontFamily: "cursive", marginBottom: "10px" }}><center><b> WELCOME TO ADMIN LOGIN </b></center></h2><br />
+            <h2 className="pb-4" style={{ fontFamily: "cursive", marginBottom: "10px" }}><center><b> WELCOME BRANCH MANAGER LOGIN </b></center></h2><br />
             <div className="form-style">
               <form onSubmit={formik.handleSubmit}>
                 <div className="form-group pb-3">

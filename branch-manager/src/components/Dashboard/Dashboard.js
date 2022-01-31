@@ -1,14 +1,11 @@
 import '../../App.css';
 import React, { useEffect, useState } from 'react';
-import ImgMediaCard from "../UI-components/ImgMediaCard";
+import ImgMediaCard from "./ImgMediaCard";
 import { GlobalContext } from '../../context/Context';
 import { useContext } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-
 import Button from "@mui/material/Button";
-import '../../App.css';
-import Footer from '../UI-components/Footer';
 import { baseurl } from '../../core';
 import axios from 'axios';
 
@@ -41,7 +38,7 @@ function Dashboard() {
 
     return (
         <>
-            <h1 style={{ margin: '2%', textAlign: 'center', color: "grey" }}>Loan Applications</h1>
+            {/* <h1 style={{ margin: '2%', textAlign: 'center', color: "grey" }}>Loan Applications</h1>
 
             <div className="dashboard-main">
 
@@ -59,9 +56,10 @@ function Dashboard() {
 
                     />
                 ))}
-            </div>
+            </div> */}
 
-            <Footer />
+            <h1>this is dashboard</h1>
+
         </>
     );
 }
