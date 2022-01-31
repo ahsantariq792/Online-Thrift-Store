@@ -815,53 +815,6 @@ app.get("/api/v1/post/:email", (req, res) => {
 });
 
 
-<<<<<<< HEAD
-
-const ContactUs = mongoose.model('ContactUs', {
-    username: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    },
-    message: {
-        type: String,
-        required: true
-    }
-})
-app.post('/api/post/contactus', async (req, res) => {
-    const {username, email,phone,message } = req.body
-    if (!username || !email || !phone || !message ) {
-        return (res.status(500).send("plz fill all fields")
-        )
-    } else {
-        const table = new ContactUs({username, email,phone,message  })
-        table.save().then(() => {
-            console.log("Ad uploaded successfully"); res.status(200).send('Ad uploaded successfully')
-        }).catch((error) => { console.log(error) })
-    }
-})
-
-app.get("/api/v1/contactus", (req, res) => {
-    console.log("asad")
-
-    ContactUs.find()
-        .sort({ created: "desc" })
-        .then(admdata => res.json(admdata))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
-
-
-
-=======
->>>>>>> 64401fa42af6d559e0d519e040786a89432ae71c
 app.get("/**", (req, res, next) => {
     res.sendFile(path.join(__dirname, "./web-frontend/build/index.html"))
     // res.redirect("/")
