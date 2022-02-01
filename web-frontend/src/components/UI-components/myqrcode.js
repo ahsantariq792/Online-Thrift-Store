@@ -64,11 +64,7 @@ const MyQrCode = () => {
     }, [])
     return (
         <>
-<<<<<<< HEAD
-            <h1>{post?.status}</h1>
-            <button onClick={download}>DOWNLOAD</button>
-=======
-            {/* <button onClick={download}>DOWNLOAD PDF</button> */}
+
 
 
             <div class="pdfcontainer">
@@ -82,7 +78,6 @@ const MyQrCode = () => {
                 }
             </div>
 
->>>>>>> 1f5ea839c9edd1dcb082be0dbc5cc26eb2371d32
         </>
         // <button onClick={download}>QR CODE<button/>
     )

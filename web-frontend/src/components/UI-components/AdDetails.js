@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import "../../App.css"
 import { baseurl } from '../../core';
 import axios from 'axios';
+import { Button } from '@mui/material';
 
 export default function AdDetails(props) {
     // const email=posts.email
@@ -34,8 +35,9 @@ export default function AdDetails(props) {
     return (
 
         <div class="container py-5">
-            <Link to={`/chat/${to_email}`}>CHAT WITH SELLER</Link>
-            <Link to={`/loanform/${id}`}>Apply for Loan</Link>
+
+
+            {/* <button className="pdfbtn">Apply for Loan</button> */}
 
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -102,10 +104,23 @@ export default function AdDetails(props) {
 
             <h1 class="text-center py-5">DESCRIPTION</h1>
 
-            <div class="accordion-body">
+            <div class="accordion-body" style={{textAlign:"center"}}>
                 <p>{posts.description}</p>
 
             </div>
+
+            <div className='productdetail_buttons py-05'>
+
+                <Link to={`/chat/${to_email}`} style={{textDecoration: "none"}}>
+                    <Button variant="contained" className="productdetailbtn" color="primary">CHAT WITH SELLER</Button>
+
+                </Link>
+                <Link to={`/loanform/${id}`} style={{textDecoration: "none"}}>
+                    <Button variant="contained" className="productdetailbtn" color="success">Apply for Loan</Button>
+                </Link>
+
+            </div>
+
         </div>
 
 

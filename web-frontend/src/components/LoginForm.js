@@ -47,7 +47,7 @@ function Loginform() {
     })
       .then(res => {
         console.log(res.data);
-        alert('User Logined')
+        // alert('User Logined')
         if (res.data.email) {
           dispatch({
             type: "USER_LOGIN",
