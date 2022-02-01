@@ -97,15 +97,6 @@ export default function LoanDetails(props) {
 
     }
 
-    // function sendQR() {
-    //     const doc = new jsPDF();
-    //     console.log("imageUrl", imageUrl)
-    //     doc.addImage(imageUrl, 55, 40, 100, 100);
-    //     doc.text(`Congratulations User`, 70, 150)
-    //     doc.text(`Your Loan Request has been approved against the ${posts?.title}`, 40, 160)
-    //     doc.save(`${id}.pdf`);
-    // }
-
 
 
 

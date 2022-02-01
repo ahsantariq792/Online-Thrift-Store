@@ -21,11 +21,6 @@ function SearchAppBar() {
 
 
                             <li>
-                                <Link to="/adminlogin" className="nav-itms">Login As Admin</Link>
-                            </li>
-
-
-                            <li>
                                 <Link to="/" className="nav-itms">Login</Link>
                             </li>
 

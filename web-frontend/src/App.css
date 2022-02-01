@@ -238,7 +238,18 @@ p.buttonbox {
   margin-right: 24px ;
   margin-left: 24px ;
   font-size: 18px;
+  margin-top: 8px;
+  justify-content: center;
+  vertical-align: middle;
+  display: flex;
+}
 
+#dropdown{
+  color: red !important;
+  font-weight: 600 !important;  
+  font-size: 18px;
+  margin: 0% !important;
+  text-align: center !important;
 }
 
 .nav-main{
@@ -264,7 +275,38 @@ Link{
   outline: none;
 }
 
+/* Pdf css */
 
+.pdfcontainer{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  overflow: hidden;
+  text-align: center;
+  
+}
+
+.pdfbtn{
+  color: white;
+  font-size: 24px;
+  background-color: green;
+  height: 60px;
+  width: 240px;
+  margin-top: 8%;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.5s all;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.pdfbtn:hover{
+  opacity: 0.9;
+  background-color: rgb(99, 231, 99);
+
+}
 
 /* Profile Page Css */
 
@@ -496,6 +538,19 @@ Link{
 
 .cardcontent{
  text-align: center;
+  font-family: 'Times New Roman', Times, serif !important;
+  text-transform: capitalize;
+}
+
+.cardtitle{
+  
+  letter-spacing: 2px !important;
+}
+
+.cardprice{
+  font-weight: 600 !important;
+  font-style: italic;
+  letter-spacing: 1px !important;
 
 }
 
@@ -505,15 +560,17 @@ Link{
 }
 
 .order{
-  padding: 10px !important;
-  font-size: 16px !important;
-  border-radius: 10px !important;
+  padding: 6px 14px !important;
+  font-size: 20px !important;
+  font-family: corbel!important;
+  border-radius: 12px !important;
 }
 
 .card-main{
   width: 500px;
   margin: 2%;
   padding: 8px;
+  font-family: Helvetica, sans-serif !important
 }
 
 
