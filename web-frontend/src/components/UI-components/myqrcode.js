@@ -64,9 +64,6 @@ const MyQrCode = () => {
     }, [])
     return (
         <>
-
-
-
             <div class="pdfcontainer">
 
                 <h2>Your Application is <span style={{ fontStyle: "italic" }}>{post?.status}</span></h2>
