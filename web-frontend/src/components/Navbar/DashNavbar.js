@@ -1,18 +1,30 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 import { baseurl } from '../../core';
 import { GlobalContext } from '../../context/Context';
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
 
 function DashNavbar() {
-    
+
     let { state, dispatch } = useContext(GlobalContext);
 
+
+    const [profile, setProfile] = useState({})
+
+    useEffect(() => {
+
+        axios.get(`${baseurl}/api/v1/profile`, {
+            withCredentials: true
+        })
+            .then((res) => {
+                console.log("res +++: ", res.data);
+                setProfile(res.data)
+            })
+    }, [])
 
     const logout = () => {
         axios.post(`${baseurl}/api/v1/logout`, {}, {
@@ -27,6 +39,8 @@ function DashNavbar() {
 
     }
 
+
+
     return (
         <>
             <Navbar bg="dark" expand="lg">
@@ -38,14 +52,14 @@ function DashNavbar() {
                             <li>
                                 <Link to="/" className="nav-itms">Profile</Link>
                             </li>
-                            
+
 
                             <li>
                                 <Link to="/dashboard" className="nav-itms">Dashboard</Link>
                             </li>
 
                             <li>
-                                <Link to="/sellerboard" className="nav-itms">Seller Mode</Link>
+                                <Link to="/carform" className="nav-itms">Sell Car</Link>
                             </li>
 
                             <li>
@@ -60,7 +74,7 @@ function DashNavbar() {
                                 <Link to="/faq" className="nav-itms">FAQ</Link>
                             </li>
                             <li>
-                                <Link to="/mychats" className="nav-itms">INBOX</Link>
+                                <Link to="/mychats" className="nav-itms">Inbox</Link>
                             </li>
 
                             <li>
@@ -68,9 +82,21 @@ function DashNavbar() {
                             </li>
 
 
+                            {/* <li>
+                                <Link to="/" onClick={logout} className="nav-itms" style={{ color: "red" }}>Logout</Link>
+                            </li> */}
+
                             <li>
-                                <Link to="/" onClick={logout} className="nav-itms" style={{ fontWeight:"600", color: "red", marginLeft: "20%"}}>Logout</Link>
+                                <NavDropdown title="Logout" id="dropdown">
+                                    <NavDropdown.Item style={{textAlign: "center"}}>{profile?.name}</NavDropdown.Item>
+                                    <NavDropdown.Item style={{textAlign: "center"}}>{profile?.email}</NavDropdown.Item>
+                                    <NavDropdown.Item style={{textAlign: "center"}}>{profile?.phone}</NavDropdown.Item>
+                                    <NavDropdown.Divider style={{width: "100%"}} />
+                                        <Link to="/" onClick={logout} className="nav-itms" style={{ color: "red" }}>Logout</Link>
+                                </NavDropdown>
+
                             </li>
+
 
                         </Nav>
                     </Navbar.Collapse>

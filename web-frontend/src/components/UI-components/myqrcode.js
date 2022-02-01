@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../App.css'
 import { useEffect, useState } from 'react';
 import { GlobalContext } from '../../context/Context';
 import { useContext } from 'react';
@@ -63,8 +64,25 @@ const MyQrCode = () => {
     }, [])
     return (
         <>
+<<<<<<< HEAD
             <h1>{post?.status}</h1>
             <button onClick={download}>DOWNLOAD</button>
+=======
+            {/* <button onClick={download}>DOWNLOAD PDF</button> */}
+
+
+            <div class="pdfcontainer">
+
+                <h2>Your Application is <span style={{ fontStyle: "italic" }}>{post?.status}</span></h2>
+                {(post?.status == "Approved") ? <button onClick={download} className="pdfbtn">DOWNLOAD PDF</button>
+                    :
+                    ((post?.status == "Pending") ? <h4 style={{ color: "grey", fontStyle: "italic" }}>Plz wait for Approval</h4>
+                        :
+                        <h4 style={{ color: "grey", fontStyle: "italic" }}>Sorry Your Request has been Rejected</h4>)
+                }
+            </div>
+
+>>>>>>> 1f5ea839c9edd1dcb082be0dbc5cc26eb2371d32
         </>
         // <button onClick={download}>QR CODE<button/>
     )

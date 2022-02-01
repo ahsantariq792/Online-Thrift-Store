@@ -37,7 +37,7 @@ function Dashboard() {
 
     return (
         <>
-            <CenteredTabs />
+            {/* <CenteredTabs /> */}
             <h1 style={{ margin: '2%', textAlign: 'center', color: "grey"  }}>Welcome</h1>
 
             <div className="dashboard-main">
@@ -59,9 +59,6 @@ function Dashboard() {
                         state={posts?.state}
                         year={posts?.year}
                         id={posts?._id}
-
-
-                
                     />
                 ))}
             </div>
