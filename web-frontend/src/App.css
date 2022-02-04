@@ -57,6 +57,23 @@ h3{
   margin: 0px !important;
 }
 
+.upper{
+  text-align:center;
+  background-color: lightgrey;
+
+}
+
+.lin{
+  text-decoration: none;
+  margin:10px;
+  font-size: 20px;
+  color:green;
+  background-color: lightgrey;
+}
+
+.lin:hover{
+  color:yellow;
+}
 
 
 .item{
@@ -261,7 +278,7 @@ p.buttonbox {
 }
 
 #dropdown{
-  color: red !important;
+  /* color: red !important; */
   font-weight: 600 !important;  
   font-size: 18px;
   margin: 0% !important;
@@ -580,6 +597,7 @@ Link{
   font-size: 20px !important;
   font-family: corbel!important;
   border-radius: 12px !important;
+
 }
 
 .card-main{

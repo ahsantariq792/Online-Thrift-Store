@@ -23,7 +23,7 @@ export const SpecificChat = () => {
     const Submit = () => {
 
         // console.log("values")
-        let m = moment().format('MMMM Do YYYY')
+        let m = moment().format('MMMM Do, h:mm:ss');
         console.log(to_email)
         axios.post(`${baseurl}/api/v1/post`,
             {

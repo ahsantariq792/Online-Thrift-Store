@@ -9,6 +9,9 @@ import { Server } from "socket.io";
 import nodemailer from "nodemailer"
 import { response } from 'express';
 const __dirname = path.resolve();
+import dotenv from "dotenv"
+dotenv.config({path:'./config.env'})
+const DB=process.env.DATABASE;
 
 import {
     stringToHash,
@@ -40,7 +43,7 @@ app.get("/", (req, res, next) => {
 })
 
 
-mongoose.connect("mongodb+srv://ahsan:1234@thrift-system.8903a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+mongoose.connect(DB)
 const Post = mongoose.model('Post', {
     name: String,
     post: String,
@@ -413,13 +416,13 @@ app.put("/api/v1/loan_apply/:id/:email", (req, res) => {
         // secure: true, // true for 465, false for other ports
         service: 'Gmail',
         auth: {
-            user: 'tariqayyan500@gmail.com', // generated ethereal user
-            pass: 'incorrect123@', // generated ethereal password
+            user: 'storeothrift.com@gmail.com', // generated ethereal user
+            pass: 'helloworld34', // generated ethereal password
         },
     });
 
     let options = {
-        from: "online_thrift123@outlook.com", // sender address
+        from: "storeothrift.com@gmail.com", // sender address
         to: email, // list of receivers
         subject: `Loan Request ${status} `, // Subject line
         text: text
@@ -696,7 +699,46 @@ app.post('/api/v1/admin_login', (req, res) => {
     })
 })
 
+const ContactUs = mongoose.model('ContactUs', {
+    username: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    message: {
+        type: String,
+        required: true
+    }
+})
 
+app.post('/api/post/contactus', async (req, res) => {
+    const {username, email,phone,message } = req.body
+    if (!username || !email || !phone || !message ) {
+        return (res.status(500).send("plz fill all fields")
+        )
+    } else {
+        const table = new ContactUs({username, email,phone,message  })
+        table.save().then(() => {
+            console.log("Ad uploaded successfully"); res.status(200).send('Ad uploaded successfully')
+        }).catch((error) => { console.log(error) })
+    }
+})
+
+app.get("/api/v1/contactus", (req, res) => {
+    console.log("asad")
+
+    ContactUs.find()
+        .sort({ created: "desc" })
+        .then(admdata => res.json(admdata))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 
 
 

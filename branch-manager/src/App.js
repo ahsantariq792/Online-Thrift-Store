@@ -70,29 +70,28 @@ function App() {
 
 
 
-      {/* {(state?.user == null) ? */}
+      {(state?.user == null) ?
 
-        {/* <Switch>
+        <Switch>
           <Route exact path="/">
             <Login />
           </Route>
           <Redirect to="/" />
-        </Switch> */}
-        {/* :
+        </Switch>
+        :
         <Switch>
           <Route exact path="/">
             <ScanQrcode />
-          </Route> */}
-<Route exact path="/">
-            <ScanQrcode />
           </Route>
+
           <Route path="/dashboard/:id">
             <Dashboard />
           </Route>
-        {/* </Switch> */}
 
-      {/* } */}
-      
+        </Switch>
+
+      }
+
       {/* <Route path="/dashboard">
             <Dashboard />
           </Route> */}
@@ -110,6 +109,13 @@ function App() {
         : null} */}
 
 
+
+      {/* <Route exact path="/">
+        <ScanQrcode />
+      </Route>
+      <Route path="/dashboard/:id">
+        <Dashboard />
+      </Route> */}
 
     </div>
   );

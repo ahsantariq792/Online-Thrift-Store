@@ -47,7 +47,7 @@ function Login() {
     })
       .then(res => {
         console.log(res.data);
-        alert('User Logined')
+        // alert('User Logined')
         if (res.data.email) {
           dispatch({
             type: "USER_LOGIN",
@@ -133,7 +133,7 @@ function Login() {
                 <div className="d-flex align-items-center justify-content-between">
                 </div><br />
                 <div className="pb-2">
-                  <button type="submit" id="userbtn" className="btn btn-dark w-100 font-weight-bold mt-2">LOGIN</button>
+                  <button type="submit" id="userbtn" className=" btn-dark w-100 font-weight-bold mt-2">LOGIN</button>
                 </div>
               </form>
 

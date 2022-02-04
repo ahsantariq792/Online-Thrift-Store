@@ -34,8 +34,8 @@ export default function ImgMediaCard(props) {
         </Typography> */}
       </CardContent>
       <CardActions className="order-btn">
-        <Link to={`/dash/${props.id}`}>
-          <Button variant="contained" className="order">Details</Button>
+        <Link to={`/dash/${props.id}`} style={{textDecoration: "none"}}>
+          <Button variant="contained" color="success" className="order">Details</Button>
         </Link>
       </CardActions>
     </Card>

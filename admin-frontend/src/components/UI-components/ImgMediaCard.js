@@ -35,7 +35,7 @@ export default function ImgMediaCard(props) {
       </CardContent>
       <CardActions className="order-btn">
 
-        <Link to = {`/loan_details/${props.id}`} >
+        <Link to = {`/loan_details/${props.id}`} style={{textDecoration: "none"}}>
           <Button variant="contained" className="order" color="success">See Details</Button>
         </Link>
 

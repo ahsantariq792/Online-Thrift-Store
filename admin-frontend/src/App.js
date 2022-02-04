@@ -20,6 +20,7 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Signupmanager from './components/Signup/Signupmanager';
+import Feedbacks from './components/Dashboard/Feedbacks';
 
 
 
@@ -102,6 +103,10 @@ function App() {
 
         <Route path="/signupmanager">
           <Signupmanager />
+        </Route>
+
+        <Route path="/feedback">
+          <Feedbacks />
         </Route>
 
         <Redirect to="/" />

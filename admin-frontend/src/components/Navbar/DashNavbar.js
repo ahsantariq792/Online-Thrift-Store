@@ -45,6 +45,10 @@ function DashNavbar() {
                                 <Link to="/signupmanager" className="nav-itms">Signup Manager</Link>
                             </li>
 
+                            <li>
+                                <Link to="/feedback" className="nav-itms">Feedback</Link>
+                            </li>
+
 
                             <li>
                                 <Link to="/" onClick={logout} className="nav-itms" style={{ fontWeight:"600", color: "red", marginLeft: "20%"}}>Logout</Link>

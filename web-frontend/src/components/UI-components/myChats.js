@@ -12,7 +12,7 @@ export const MyChats = () => {
     let { state, dispatch } = useContext(GlobalContext);
     const email = state?.user?.email
     const [posts, setPosts] = useState([])
-    
+
     // for (let i = 0; i < posts.length; i++) {
     //     var c=0
     //     for (let j = 0; j < posts.length; j++) {
@@ -41,13 +41,29 @@ export const MyChats = () => {
             .catch(err => alert("Error in getting data"))
     }, [])
     return (
-        <div>
+        // <div>
+        //     {posts?.map((posts, index) => (
+
+        //         <Link to={`/specificChat/${posts?.email}`}>
+
+
+        //             {posts?.name}<br></br>
+
+
+        //         </Link>
+        //     )
+
+        //     )}
+        // </div>
+
+        <div className='upper'>
             {posts?.map((posts, index) => (
 
-                <Link to={`/specificChat/${posts?.email}`}>
+                <Link className='lin' to={`/specificChat/${posts?.email}`}>
 
-
-                    {posts?.name}<br></br>
+                    <div>
+                        {posts?.name}<br></br>
+                    </div>
 
 
                 </Link>
@@ -55,5 +71,6 @@ export const MyChats = () => {
 
             )}
         </div>
+
     );
 };

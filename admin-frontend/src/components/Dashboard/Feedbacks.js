@@ -12,7 +12,7 @@ import { Mailer } from 'nodemailer-react'
 
 export default function Feedbacks(props) {
 
-    
+
 
     const [posts, setPosts] = useState([])
 
@@ -21,7 +21,7 @@ export default function Feedbacks(props) {
 
 
     const getData = async () => {
-        await axios.get(`${baseurl}/api/v1/loan_apply/${id}`,
+        await axios.get(`${baseurl}/api/v1/contactus`,
             {
                 withCredentials: true
             })
@@ -47,17 +47,19 @@ export default function Feedbacks(props) {
 
             <h1 className="text-center py-5">CUSTOMER FEEDBACKS</h1>
             <div className="accordion-body">
-                <ul className="ul">
+                {posts?.map((posts, index) => (
 
-                    <li className="full"><span className="left">CUSTOMER NAME</span><span className="right"> {posts?.name}</span>
-                    </li>
-                    <li className="full"><span className="left">EMAIL</span><span className="right">{posts?.salary}</span>
-                    </li>
-                    <li className="full"><span className="left">PHONE</span><span className="right"> {posts?.state}</span>
-                    </li>
-                    <li className="full"><span className="left">MESSAGE</span><span className="right"> {posts?.city}</span>
-                    </li>
-                </ul>
+                    <ul className="ul">
+                        <li className="full"><div className="left">CUSTOMER NAME</div><div className="right"> {posts?.username}</div>
+                        </li>
+                        <li className="full"><span className="left">EMAIL</span><span className="right">{posts?.email}</span>
+                        </li>
+                        <li className="full"><span className="left">PHONE</span><span className="right"> {posts?.phone}</span>
+                        </li>
+                        <li className="full"><span className="left">MESSAGE</span><span className="right"> {posts?.message}</span>
+                        </li>
+                    </ul>
+                ))}
             </div>
         </div>
 

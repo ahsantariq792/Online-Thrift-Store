@@ -51,7 +51,7 @@ function Dashboard() {
                         make={posts?.make}
                         condition={posts?.condition}
                         price={posts?.price}
-                        image={posts?.imageurl1}
+                        image={posts?.producturl}
                         id={posts._id}
 
 
@@ -61,7 +61,7 @@ function Dashboard() {
                 ))}
             </div>
 
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }

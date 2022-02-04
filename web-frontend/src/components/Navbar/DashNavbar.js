@@ -1,12 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios';
 import { baseurl } from '../../core';
 import { GlobalContext } from '../../context/Context';
 import { useContext, useState, useEffect } from "react";
-
 
 function DashNavbar() {
 
@@ -87,7 +86,7 @@ function DashNavbar() {
                             </li> */}
 
                             <li>
-                                <NavDropdown title="Logout" id="dropdown">
+                                <NavDropdown title= {<img height={30} width={30} src="https://icon-library.com/images/profile-icon-white/profile-icon-white-1.jpg" />} id="dropdown">
                                     <NavDropdown.Item style={{textAlign: "center"}}>{profile?.name}</NavDropdown.Item>
                                     <NavDropdown.Item style={{textAlign: "center"}}>{profile?.email}</NavDropdown.Item>
                                     <NavDropdown.Item style={{textAlign: "center"}}>{profile?.phone}</NavDropdown.Item>
@@ -95,7 +94,7 @@ function DashNavbar() {
                                         <Link to="/" onClick={logout} className="nav-itms" style={{ color: "red" }}>Logout</Link>
                                 </NavDropdown>
 
-                            </li>
+                            </li> 
 
 
                         </Nav>

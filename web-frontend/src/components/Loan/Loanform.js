@@ -71,7 +71,7 @@ const validationSchema = yup.object({
 
     tcnic: yup
         .string('Enter your cnic no.')
-        .min(2, 'cnic should contain 2 digits')
+        .min(13, 'cnic should contain 13 digits')
         .required('cnic number is required'),
 
     taddress: yup
@@ -94,23 +94,22 @@ const validationSchema = yup.object({
 
 
 function Loanform() {
-      let { state, dispatch } = useContext(GlobalContext);
-      const email= state?.user?.email
-      console.log(email)
+    let { state, dispatch } = useContext(GlobalContext);
+    const email = state?.user?.email
+    console.log(email)
 
 
     const { id } = useParams()
     //console.log(id)
 
     const [post, setPosts] = useState([])
-    //console.log("this is ad details", post)
     const getData = async () => {
         await axios.get(`${baseurl}/api/v1/get_ad_vehicle/${id}`,
             {
                 withCredentials: true
             })
             .then(response => {
-                //console.log("asad", response.data)
+                //console.log("response data", response.data)
                 setPosts(() => response.data)
                 // //console.log(posts)
             })
@@ -163,13 +162,13 @@ function Loanform() {
                 }
             },
             (error) => {
-                //console.log("error in uploading image", error)
+                console.log("error in uploading image", error)
             },
             () => {
                 getDownloadURL(uploadTask1.snapshot.ref).then((downloadURL) => {
-                    //console.log('File available at', downloadURL);
+                    console.log('File available at', downloadURL);
                     setImageurl1(() => downloadURL)
-                    //console.log("imageurl", imageurl1)
+                    console.log("imageurl", imageurl1)
 
                 });
             }
@@ -296,40 +295,41 @@ function Loanform() {
 
         const storageRef6 = ref(storage, `images/vehicle_image/${image6.name}`);
         const uploadTask6 = uploadBytesResumable(storageRef6, image6);
-        
+
         uploadTask6.on('state_changed',
-        (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            //console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case 'paused':
-                    //console.log('Upload is paused');
-                    break;
-                case 'running':
-                    //console.log('Upload is running');
-                    break;
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                //console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case 'paused':
+                        //console.log('Upload is paused');
+                        break;
+                    case 'running':
+                        //console.log('Upload is running');
+                        break;
+                }
+            },
+            (error) => {
+                //console.log("error in uploading image", error)
+            },
+            () => {
+                getDownloadURL(uploadTask6.snapshot.ref).then((downloadURL) => {
+                    //console.log('File available at', downloadURL);
+                    setImageurl6(() => downloadURL)
+                    //console.log("imageurl6", imageurl6)
+
+                });
             }
-        },
-        (error) => {
-            //console.log("error in uploading image", error)
-        },
-        () => {
-            getDownloadURL(uploadTask6.snapshot.ref).then((downloadURL) => {
-                //console.log('File available at', downloadURL);
-                setImageurl6(() => downloadURL)
-                //console.log("imageurl6", imageurl6)
+        );
 
-            });
-        }
-    );
+        const price = post.price;
+        const title = post.title;
+        const make = post.make;
+        const condition = post.condition;
+        const producturl = post.imageurl1;
 
-        const price=post.price;
-        const title=post.title;
-        const make=post.make;
-        const condition=post.condition;
-        const producturl=post.imageurl1;
-        
-        // console.log("fxyjfxxhxh",nam)
+
+
         const { description, jobtitle, salary, officeaddress, sdate, edate, amount, city, state, address, tname, tphone, taddress, tcnic } = values;
         console.log("SUBMIT_values", values)
 
@@ -339,7 +339,7 @@ function Loanform() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-               email,price,title,make,condition,producturl, description, jobtitle, salary, officeaddress, sdate, edate, amount, city, state, address, tname, tphone, taddress, tcnic, imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6
+                email, price, title, make, condition, producturl, description, jobtitle, salary, officeaddress, sdate, edate, amount, city, state, address, tname, tphone, taddress, tcnic, imageurl1, imageurl2, imageurl3, imageurl4, imageurl5, imageurl6
             })
         })
         const data = await res.json()
@@ -931,7 +931,7 @@ function Loanform() {
                                         name="tcnic"
                                         id="tcnic"
                                         className="form-input"
-                                        placeholder="+92xxxxxxxxxx"
+                                        placeholder="4210123124532"
 
                                         value={formik.values.tcnic}
                                         onChange={formik.handleChange}

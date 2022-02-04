@@ -7,6 +7,7 @@ import { useRef } from 'react';
 import { baseurl } from '../core';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 export const ScanQrcode = () => {
 
@@ -45,15 +46,25 @@ export const ScanQrcode = () => {
 
     return (
         <div>
-            <h1>hi {state?.user?.email}</h1>
+            {/* <h1>hi {state?.user?.email}</h1> */}
             <QrReader
                 delay={300}
                 style={{ width: '100%' }}
                 onError={handleErrorWebCam}
                 onScan={handleScanWebCam}
             />
-            <Link to={`/dashboard/${id}`}> Check Details</Link>
-            <button onClick={onScanFile}>Scan Qr Code</button>
+            {/* <Link to={`/dashboard/${id}`}> Check Details</Link>
+            <button onClick={onScanFile}>Scan Qr Code</button> */}
+            <div className='productdetail_buttons'>
+
+                <Link to={`/dashboard/${id}`} style={{ textDecoration: "none",marginRight: "2%" }}>
+                    <Button variant="contained" className="productdetailbtn" color="primary">Check Details</Button>
+
+                </Link>
+                <Button variant="contained" onClick={onScanFile} className="productdetailbtn" color="success">Scan Qr Code</Button>
+
+            </div>
+
             <QrReader
                 ref={qrRef}
                 delay={300}
@@ -63,6 +74,8 @@ export const ScanQrcode = () => {
                 legacyMode
             />
         </div>
+
+
 
     );
 };
